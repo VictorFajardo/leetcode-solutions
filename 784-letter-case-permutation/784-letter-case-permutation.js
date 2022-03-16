@@ -5,26 +5,27 @@
 var letterCasePermutation = function(s) {
     // Breadth-First Search
     const n = s.length
-    const queue = [s] //replace with a Linked List
+    const queue = new Queue()
+    queue.enqueue(s)
     let index = 0
     
-    while (queue.length && index < n) {
+    while (!queue.isEmpty() && index < n) {
         if (s[index] >= '0' && s[index] <= '9') {
             index++
         } else {
-            let qLength = queue.length        
+            let qLength = queue.size()        
             for (let i = 0; i < qLength; i++) {
-                let curr = queue.shift()
+                let curr = queue.dequeue()
                 //LowerCase
-                queue.push(curr.substr(0, index) + curr.charAt(index).toLowerCase() + curr.substr(index + 1))
+                queue.enqueue(curr.substr(0, index) + curr.charAt(index).toLowerCase() + curr.substr(index + 1))
                 //UpperCase
-                queue.push(curr.substr(0, index) + curr.charAt(index).toUpperCase() + curr.substr(index + 1))
+                queue.enqueue(curr.substr(0, index) + curr.charAt(index).toUpperCase() + curr.substr(index + 1))
             }
             index++
         }
     }
     
-    return queue
+    return queue.toArray()
     
     // Depth-First Seach
     /*const res = []
