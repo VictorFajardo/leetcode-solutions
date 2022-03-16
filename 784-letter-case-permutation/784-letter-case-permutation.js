@@ -3,29 +3,34 @@
  * @return {string[]}
  */
 var letterCasePermutation = function(s) {
-    const n = s.length
-    const response = []
-    
-    const permutate = function(pos, str = '') {
-        //base case
-        if (str.length === n) {
-            response.push(str)
-            return
-        }
-        const char = s[pos]
-        //loop
-        if (char >= 0 && char <= 9) permutate(pos + 1, str + char)
-        else {
-            permutate(pos + 1, str + char.toLowerCase())
-            permutate(pos + 1, str + char.toUpperCase())    
-        }
-        
-        
-    }
-    
-    permutate(0)
-    
-    return response
+	const isCharNumber = function (c) {
+		return c >= '0' && c <= '9';
+	};
+
+	const permutate = function (temp, i) {
+		if (i === s.length) {
+			ans.push(temp);
+			return;
+		}
+
+		if (isCharNumber(s[i])) {
+			temp += s[i];
+			permutate(temp, i + 1);
+		} else {
+			temp += s[i].toLowerCase();
+			permutate(temp, i + 1);
+
+			temp = temp.slice(0, -1);
+
+			temp += s[i].toUpperCase();
+			permutate(temp, i + 1);
+		}
+	};
+
+	let ans = [];
+	permutate([], 0);
+
+	return ans;
     
 };
 
