@@ -14,17 +14,15 @@ var preorder = function(root) {
     if (!root) return []
     const res = []
     
-    let q = []
-    q.push(root)
+    let stack = []
+    stack.push(root)
     
-    while (q.length) {
-        let curr = q.shift()
-        let temp = []
+    while (stack.length) {
+        let curr = stack.pop()
         res.push(curr.val)
-        for (let child of curr.children) {
-            temp.push(child)
+        for (let child of curr.children.reverse()) {
+            stack.push(child)
         }
-        q = [...temp, ...q]
     }
     
     return res
