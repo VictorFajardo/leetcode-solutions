@@ -29,3 +29,7 @@ var isValidPoint = function(x, y, point) {
 var getManhattanDistance = function (x, y, point) {
     return Math.abs(x - point[0]) + Math.abs(y - point[1])
 }
+
+// Array
+// time complexity: O(n)
+// space complexity: O(1)
