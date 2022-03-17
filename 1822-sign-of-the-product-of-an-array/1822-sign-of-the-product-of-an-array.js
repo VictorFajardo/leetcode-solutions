@@ -14,3 +14,7 @@ var arraySign = function(nums) {
     return 0
     
 };
+
+// Array + Math
+// time complexity: O(n)
+// space complexity: O(1)
