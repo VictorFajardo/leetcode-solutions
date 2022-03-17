@@ -10,12 +10,21 @@
  * @param {Node|null} root
  * @return {number[]}
  */
-var preorder = function(root, res = []) {
+var preorder = function(root) {
     if (!root) return []
+    const res = []
     
-    res.push(root.val)
-    for (let child of root.children) {
-        preorder(child, res)
+    let q = []
+    q.push(root)
+    
+    while (q.length) {
+        let curr = q.shift()
+        let temp = []
+        res.push(curr.val)
+        for (let child of curr.children) {
+            temp.push(child)
+        }
+        q = [...temp, ...q]
     }
     
     return res
