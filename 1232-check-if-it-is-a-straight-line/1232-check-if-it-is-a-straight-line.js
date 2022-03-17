@@ -15,3 +15,7 @@ var checkStraightLine = function(coordinates) {
     
     return true
 };
+
+// Math
+// time complexity: O(n)
+// space complexity: O(1)
