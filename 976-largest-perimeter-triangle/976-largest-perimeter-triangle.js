@@ -11,5 +11,8 @@ var largestPerimeter = function(nums) {
     }
     
     return 0
-    
 };
+
+// Sorting + Array
+// time complexity: O(n*log(n))
+// space complexity: O(1)
