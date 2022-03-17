@@ -13,3 +13,7 @@ var canMakeArithmeticProgression = function(arr) {
     return true
     
 };
+
+// Array
+// time complexity: O(n*log(n))
+// space complexity: O(1)
