@@ -32,3 +32,4 @@ var preorder = function(root) {
 
 // Stack
 // time complexity: O(n)
+// space complexity: O(n)
