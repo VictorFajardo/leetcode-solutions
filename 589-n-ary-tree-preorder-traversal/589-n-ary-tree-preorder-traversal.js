@@ -20,11 +20,15 @@ var preorder = function(root) {
     while (stack.length) {
         let curr = stack.pop()
         res.push(curr.val)
-        for (let child of curr.children.reverse()) {
-            stack.push(child)
+        let n = curr.children.length - 1
+        for (let i = n;  i >= 0; i--) {
+            stack.push(curr.children[i])
         }
     }
     
     return res
     
 };
+
+// Stack
+// time complexity: O(n)
