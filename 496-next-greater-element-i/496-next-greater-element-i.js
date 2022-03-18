@@ -4,29 +4,13 @@
  * @return {number[]}
  */
 var nextGreaterElement = function(nums1, nums2) {
-    const indexes = {}
-    const response = []
-    
-    for (let i = 0; i < nums2.length; i++) {
-        let currentValue = nums2[i]
-        indexes[currentValue] = i
-    }
-    
-    for (let i = 0; i < nums1.length; i++) {
-        let currentValue = nums1[i]
-        let j = indexes[currentValue]
-        let nextGreater = findNextGreater(nums2, currentValue, j)
-        response.push(nextGreater)
-    }
-    
-    return response    
-    
+    return nums1.map(num => findNextGreater(num, nums2))    
 };
 
-var findNextGreater = function(arr, target, index) {
-    for (let i = index + 1; i < arr.length; i++) {
-        let currentValue = arr[i]
-        if (currentValue > target) return currentValue
+var findNextGreater = function(num, arr) {
+    let i = arr.indexOf(num) + 1
+    for (; i < arr.length; i++) {
+        if (arr[i] > num) return arr[i]
     }
     return -1
 }
