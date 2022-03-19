@@ -4,20 +4,25 @@
  * @return {number}
  */
 var search = function(nums, target) {
-    let start = 0
-    let end = nums.length - 1
-    
-    while (start <= end) {
-        let mid = Math.floor((end + start) / 2)
-        let num = nums[mid]
-        if (num === target) return mid
-        else if (num > target) end = mid - 1
-        else start = mid + 1
-    }
-    
-    return -1
+    return searchHelper(nums, target, 0, nums.length);
 };
 
-// Binary Search
-// time complexity: O(log(n))
-// space complexity: O(1)
+var searchHelper = function(nums, target, start, end) {
+    const middle = Math.floor((start + end) / 2);
+    
+    if (nums[middle] === target) {
+        return middle;
+    }
+    
+    if (start === end || start + 1 === end) {
+        return -1;
+    }
+    
+    if (nums[middle] < target) {
+        return searchHelper(nums, target, middle, end);
+    }
+
+    if (nums[middle] > target) {
+        return searchHelper(nums, target, start, middle);
+    }
+};
