@@ -4,23 +4,20 @@
  * @return {number}
  */
 var search = function(nums, target) {
-    const n = nums.length - 1
     let start = 0
-    let end = n
+    let end = nums.length - 1
     
     while (start <= end) {
-        let mid = Math.floor(start + (end - start) / 2)
-        let curr = nums[mid]
-        
-        if (curr > target) {
-            end = mid - 1
-        } else if (curr < target) {
-            start = mid + 1
-        } else {
-            return mid
-        }
+        let mid = Math.floor((end + start) / 2)
+        let num = nums[mid]
+        if (num === target) return mid
+        else if (num > target) end = mid - 1
+        else start = mid + 1
     }
     
     return -1
-    
 };
+
+// Binary Search
+// time complexity: O(log(n))
+// space complexity: O(1)
