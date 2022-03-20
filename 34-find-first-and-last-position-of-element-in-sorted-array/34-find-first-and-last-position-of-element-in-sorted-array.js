@@ -4,6 +4,7 @@
  * @return {number[]}
  */
 var searchRange = function(nums, target) {
+    
     const findBoundElement = function(isFirst) {
         let start = 0
         let end = nums.length - 1
