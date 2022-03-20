@@ -20,7 +20,7 @@ var isSubtree = function(root, subRoot) {
 
 var compare = function(root, subRoot) {
     if (!root && !subRoot) return true
-    else if (!root || !subRoot || root.val !== subRoot.val) return false
+    if (!root || !subRoot || root.val !== subRoot.val) return false
     
     return compare(root.left, subRoot.left) && compare(root.right, subRoot.right)
 }
