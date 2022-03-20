@@ -8,7 +8,7 @@ var numIslands = function(grid) {
     
     let total = 0
     
-    var fill = function(i, j) {
+    const fill = function(i, j) {
         grid[i][j] = '0'
 
         if (i - 1 >= 0 && grid[i - 1][j] === '1') fill(i - 1, j)
