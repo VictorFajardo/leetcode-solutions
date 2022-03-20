@@ -8,14 +8,15 @@ var numIslands = function(grid) {
     
     let total = 0
     
-    for (let i = 0; i < grid.length; i++) {
-        for (let j = 0; j < grid[0].length; j++) {
+    grid.forEach((row, i) => {
+        row.forEach((col, j) => {
             if (grid[i][j] === '1') {
                 fill(grid, i, j, rows, cols)
                 total++
             }
-        }
-    }
+        })
+    })
+    
     return total
 };
 
