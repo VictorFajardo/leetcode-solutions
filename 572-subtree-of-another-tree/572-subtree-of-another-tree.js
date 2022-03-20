@@ -14,7 +14,9 @@
 var isSubtree = function(root, subRoot) {
     if (!root) return false
     
-    return compare(root, subRoot) || isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot)
+    if (compare(root, subRoot)) return true
+    
+    return isSubtree(root.left, subRoot) || isSubtree(root.right, subRoot)
     
 };
 
