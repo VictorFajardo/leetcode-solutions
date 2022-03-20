@@ -15,8 +15,8 @@ var findMin = function(nums) {
         let prevNumber = nums[mid - 1]
         let nextNumber = nums[mid + 1]
         if (midNumber < prevNumber) return midNumber
-        else if (midNumber > nextNumber) return nextNumber
-        else if (midNumber > nums[left]) left = mid + 1
+        if (midNumber > nextNumber) return nextNumber
+        if (midNumber > nums[left]) left = mid + 1
         else right = mid
     }
 };
