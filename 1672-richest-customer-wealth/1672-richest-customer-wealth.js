@@ -4,15 +4,15 @@
  */
 var maximumWealth = function(accounts) {
     let maxWealth = -Infinity
-    let wealth = 0
+    let wealth
     
-    accounts.forEach((customer) => {
+    for (let account of accounts) {
         wealth = 0    
-        customer.forEach((account) => {
-            wealth += account    
-        })
+        for (let amount of account) {
+            wealth += amount
+        }
         maxWealth = Math.max(maxWealth, wealth)
-    })
+    }
     
     return maxWealth
 };
