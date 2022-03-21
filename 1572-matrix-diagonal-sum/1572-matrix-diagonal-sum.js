@@ -15,3 +15,7 @@ var diagonalSum = function(mat) {
     
     return sum
 };
+
+// Array
+// time complexity: O(n)
+// space complexity: O(1)
