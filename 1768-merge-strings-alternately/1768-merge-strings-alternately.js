@@ -6,15 +6,21 @@
 var mergeAlternately = function(word1, word2) {
     const m = word1.length
     const n = word2.length
+    let i = 0
+    let j = 0
     
     let response = ''
     
-    for (let i = 0; i < Math.min(m, n); i++) {
-        response += word1[i] + word2[i]
+    while (i < m || j < n) {
+        if (i < m) {
+            response += word1[i]
+            i++
+        }
+        if (j < n) {
+            response += word2[j]
+            j++
+        }
     }
-    
-    if (m > n) response += word1.substring(n)
-    else response += word2.substring(m)
     
     return response
     
