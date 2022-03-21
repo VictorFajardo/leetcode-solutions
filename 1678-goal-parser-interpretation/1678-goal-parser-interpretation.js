@@ -24,3 +24,7 @@ var interpret = function(command) {
     return response
     
 };
+
+// String
+// time complexity: O(n)
+// space complexity: O(1)
