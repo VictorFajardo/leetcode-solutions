@@ -16,3 +16,7 @@ var maximumWealth = function(accounts) {
     
     return maxWealth
 };
+
+// Array
+// time complexity: O(m*n)
+// space complexity: O(1)
