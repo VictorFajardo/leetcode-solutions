@@ -10,14 +10,12 @@ var interpret = function(command) {
         if (command[n] === 'G') {
             response += 'G'
             n++
-        } else if (command[n] === '(') {
-            if (command[n + 1] === ')') {
+        } else if (command[n + 1] === ')') {
                 response += 'o'
                 n += 2
-            } else {
-                response += 'al'
-                n += 4
-            }
+        } else {
+            response += 'al'
+            n += 4
         }
     }
     
