@@ -3,7 +3,7 @@
  * @return {number}
  */
 var maximumWealth = function(accounts) {
-    let maxWealth = -Infinity
+    let maxWealth = 0
     let wealth
     
     for (let account of accounts) {
