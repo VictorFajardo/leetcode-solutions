@@ -17,3 +17,7 @@ var findTheDifference = function(s, t) {
     }
     
 };
+
+// Hash Table
+// time complexity: O(n)
+// space complexity: O(n)
