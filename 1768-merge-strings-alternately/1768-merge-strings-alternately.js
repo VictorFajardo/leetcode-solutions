@@ -19,3 +19,7 @@ var mergeAlternately = function(word1, word2) {
     return response
     
 };
+
+// String
+// time complexity: O(max(m,n))
+// space complexity: O(1)
