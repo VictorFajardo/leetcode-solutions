@@ -21,3 +21,7 @@ var freqAlphabets = function(s) {
     return response
     
 };
+
+// String
+// time complexity: O(n)
+// space complexity: O(1)
