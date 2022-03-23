@@ -21,3 +21,7 @@ var getDecimalValue = function(head) {
     return total
     
 };
+
+// Linked List
+// time complexity: O(n)
+//space complexity: O(1)
