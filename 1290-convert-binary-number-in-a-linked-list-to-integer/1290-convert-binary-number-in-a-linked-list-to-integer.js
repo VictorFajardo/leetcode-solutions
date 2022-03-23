@@ -10,12 +10,12 @@
  * @return {number}
  */
 var getDecimalValue = function(head) {
+    let current = head
     let total = 0
     
-    while (head) {
-        total += head.val
-        if (head.next) total *= 2
-        head = head.next
+    while (current) {
+        total = total * 2 + current.val
+        current = current.next
     }
     
     return total
