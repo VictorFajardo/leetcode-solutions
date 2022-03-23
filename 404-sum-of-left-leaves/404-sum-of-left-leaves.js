@@ -22,3 +22,7 @@ var sumOfLeftLeaves = function(root, left = false) {
     return leftLeaves + rightLeaves
     
 };
+
+// Depth First Search
+// time complexity: O(n)
+// space complexity: O(1)
