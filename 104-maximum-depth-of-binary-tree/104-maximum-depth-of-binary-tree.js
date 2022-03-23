@@ -13,5 +13,10 @@
 var maxDepth = function(root) {
     if (!root) return 0
     
-    return Math.max(maxDepth(root.left) + 1, maxDepth(root.right) + 1)    
+    return Math.max(maxDepth(root.left), maxDepth(root.right)) + 1
+    
 };
+
+// Depth First Search
+// time complexity: O(n)
+// space complexity: O(1)
