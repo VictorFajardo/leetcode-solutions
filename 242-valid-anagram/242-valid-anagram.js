@@ -24,5 +24,5 @@ var isAnagram = function(s, t) {
 };
 
 // Array
-// time complexity: O(n || m)
-// space complexity: O(n || m)
+// time complexity: O(n)
+// space complexity: O(1)
