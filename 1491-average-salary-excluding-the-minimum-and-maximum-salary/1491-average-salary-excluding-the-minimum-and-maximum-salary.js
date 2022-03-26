@@ -16,3 +16,7 @@ var average = function(salary) {
     return (sum - minSalary - maxSalary) / (salary.length - 2)
     
 };
+
+// Array
+// time complexity: O(n)
+// space complexity: O(1)
