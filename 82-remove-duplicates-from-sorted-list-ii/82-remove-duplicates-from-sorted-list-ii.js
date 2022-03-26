@@ -37,3 +37,7 @@ var deleteDuplicates = function(head) {
     return sorted.next
     
 };
+
+// Linked List
+// time complexity: O(n)
+// space complexity: O(1)
