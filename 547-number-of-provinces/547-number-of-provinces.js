@@ -27,3 +27,7 @@ var findCircleNum = function(isConnected) {
     return count
     
 };
+
+// Breadth First Search
+// time complexity: O(n^2)
+// space complexity: O(n)
