@@ -12,11 +12,11 @@
 var deleteDuplicates = function(head) {
     if (!head) return head
     
-    let tempHead = new ListNode()
-    tempHead.next = head
+    let sorted = new ListNode(0)
+    sorted.next = head
     
-    let prev = tempHead
-    let current = tempHead.next
+    let prev = sorted
+    let current = head
     
     while (current) {
         let value = current.val
@@ -27,13 +27,13 @@ var deleteDuplicates = function(head) {
             }
 
             prev.next = current.next
-            current = current.next    
         } else {
             prev = current
-            current = current.next
         }
+        
+        current = current.next    
     }
     
-    return tempHead.next
+    return sorted.next
     
 };
