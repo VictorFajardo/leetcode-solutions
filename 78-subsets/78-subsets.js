@@ -28,4 +28,6 @@ var subsets = function(nums) {
     
 };
 
-//Backtracking
+// Backtracking
+// time complexity: O(n*2^n)
+// space complexity: O(n)
