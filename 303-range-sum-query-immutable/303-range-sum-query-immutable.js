@@ -2,8 +2,11 @@
  * @param {number[]} nums
  */
 var NumArray = function(nums) {
-    this.nums = nums
-    this.cache = {}
+    this.sums = [0]
+    
+    for (let i = 0; i < nums.length; i++) {
+        this.sums.push(nums[i] + this.sums[i])
+    }
 };
 
 /** 
@@ -12,19 +15,7 @@ var NumArray = function(nums) {
  * @return {number}
  */
 NumArray.prototype.sumRange = function(left, right) {
-    let key = `${left}:${right}` //0:3
-    
-    if (!(key in this.cache)) {
-        let sum = 0
-
-        while (left <= right) {
-            sum += this.nums[left]
-            left++
-        }
-
-        this.cache[key] = sum
-    }
-    return this.cache[key]
+    return this.sums[right + 1] - this.sums[left]
     
 };
 
