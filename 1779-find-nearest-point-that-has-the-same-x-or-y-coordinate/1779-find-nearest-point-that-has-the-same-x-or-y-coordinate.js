@@ -31,5 +31,5 @@ var getManhattanDistance = function (x, y, point) {
 }
 
 // Array
-// time complexity: O(n)
+// time complexity: O(n*log(n))
 // space complexity: O(1)
