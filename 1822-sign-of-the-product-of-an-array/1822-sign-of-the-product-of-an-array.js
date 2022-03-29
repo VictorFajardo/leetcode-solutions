@@ -13,9 +13,3 @@ var arraySign = function(nums) {
     return prod > 0 ? 1 : -1
     
 };
-
-var signFunc = function(product) {
-    if (product > 0) return 1
-    else if (product < 0) return -1
-    else return 0
-}
