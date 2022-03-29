@@ -3,18 +3,18 @@
  * @return {number}
  */
 var arraySign = function(nums) {
-    let result = 1
+    let prod = 1
     
     for (let number of nums) {
-        result *= number
+        prod *= number
     }
     
-    if (result > 0) return 1
-    else if (result < 0) return -1
-    return 0
+    return signFunc(prod)   
     
 };
 
-// Array + Math
-// time complexity: O(n)
-// space complexity: O(1)
+var signFunc = function(product) {
+    if (product > 0) return 1
+    else if (product < 0) return -1
+    else return 0
+}
