@@ -6,10 +6,11 @@ var arraySign = function(nums) {
     let prod = 1
     
     for (let number of nums) {
+        if (!number) return 0
         prod *= number
     }
     
-    return signFunc(prod)   
+    return prod > 0 ? 1 : -1
     
 };
 
