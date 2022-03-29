@@ -14,3 +14,7 @@ var arraySign = function(nums) {
     return prod > 0 ? 1 : -1
     
 };
+
+// Math
+// time complexity: O(n)
+// space complexity: O(1)
