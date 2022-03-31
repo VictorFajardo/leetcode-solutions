@@ -3,14 +3,20 @@
  * @return {void} Do not return anything, modify nums in-place instead.
  */
 var moveZeroes = function(nums) {
-    for (let [slow, fast] = [0, 0]; fast < nums.length; fast++) {
-        if (nums[fast] !== 0) {
-            [nums[fast], nums[slow]] = [nums[slow], nums[fast]]
-            slow++
+    let left = 0
+    let right = 0
+    
+    for (; right < nums.length; right++) {
+        if (nums[right] !== 0) {
+            swap(nums, left, right)
+            left++
         }
     }
+    
+    return nums
+    
 };
 
-// Fast & Slow Pointers
-// time complexity: O(n)
-// space complexity: O(1)
+var swap = function(arr, x, y) {
+    [arr[x], arr[y]] = [arr[y], arr[x]]
+}
