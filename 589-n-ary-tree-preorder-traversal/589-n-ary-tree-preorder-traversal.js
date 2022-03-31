@@ -12,24 +12,18 @@
  */
 var preorder = function(root) {
     if (!root) return []
-    const res = []
-    
-    let stack = []
+    const stack = []
+    const response = []
     stack.push(root)
     
     while (stack.length) {
-        let curr = stack.pop()
-        res.push(curr.val)
-        let n = curr.children.length - 1
-        for (let i = n;  i >= 0; i--) {
-            stack.push(curr.children[i])
+        const current = stack.pop()
+        response.push(current.val)
+        for (let child of current.children.reverse()) {
+            stack.push(child)
         }
     }
     
-    return res
+    return response
     
 };
-
-// Stack
-// time complexity: O(n)
-// space complexity: O(n)
