@@ -49,3 +49,7 @@ var fill = function(board, i, j, rows, cols) {
     if (j > 0) fill(board, i, j - 1, rows, cols)
 }
 
+// Depth First Search
+// time complexity: O(n)
+// space complexity: O(n)
+
