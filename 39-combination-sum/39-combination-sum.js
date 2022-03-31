@@ -12,21 +12,20 @@ var combinationSum = function(candidates, target) {
     return response
 };
 
-var backtracking = function(arr, index, target, response, comb = [], sum = 0) {
+var backtracking = function(arr, index, remain, response, comb = []) {
     //base case
-    if (sum === target) {
+    if (remain === 0) {
         response.push([...comb])
         return
     }
-    if (sum > target) return
+    if (remain < 0) return
     //loop
     for (let i = index; i < arr.length; i ++) {
         const curr = arr[i]
-        if (target < sum + curr) continue
         //add
         comb.push(curr)
         //backtrack
-        backtracking(arr, i, target, response, comb, sum + curr)
+        backtracking(arr, i, remain - curr, response, comb)
         //remove
         comb.pop()
     }
