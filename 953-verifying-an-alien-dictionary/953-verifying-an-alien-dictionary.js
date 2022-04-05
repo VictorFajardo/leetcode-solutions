@@ -25,3 +25,7 @@ var isAlienSorted = function(words, order) {
     
     return true
 };
+
+// Hashtable
+// time complexity: O(n)
+// space complexity: O(1)
