@@ -5,20 +5,17 @@
  * @return {number[][]}
  */
 var matrixReshape = function(mat, r, c) {
-    const m = mat.length
-    const n = mat[0].length
-    if (m * n !== r * c) return mat
-    
-    const response = new Array(r).fill(0).map(_ => new Array(c))
-    
-    for (let i = 0; i < m * n; i++) {
-        const value = mat[Math.floor(i / n)][i % n]
-        response[Math.floor(i / c)][i % c] = value
+    let h = mat.length
+    let w = mat[0].length
+    if (r * c !== h * w) return mat
+    let res = new Array(r).fill(0).map(_ => Array(c))
+    for (let i = 0; i < r * c; i++) {
+        res[Math.floor(i / c)][i % c] = mat[Math.floor(i / w)][i % w]
     }
+    return res
     
-    return response   
 };
 
-// Array
-// time complexity: O(m * n)
-// space complaxity: O(m * n)
+// 2D Array
+// time complexity: O(n)
+// space complexity: O(n)
