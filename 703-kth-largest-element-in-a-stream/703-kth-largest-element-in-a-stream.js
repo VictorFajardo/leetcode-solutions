@@ -7,7 +7,11 @@ var KthLargest = function(k, nums) {
     this.pq = new MinPriorityQueue()
     
     for (let el of nums) {
-        this.add(el)
+        this.pq.enqueue(el)
+    }
+    
+    while (this.pq.size() > this.k) {
+        this.pq.dequeue()
     }
 };
 
@@ -16,13 +20,9 @@ var KthLargest = function(k, nums) {
  * @return {number}
  */
 KthLargest.prototype.add = function(val) {
-    if (this.pq.size() >= this.k) {
-        if (val > this.pq.front().element) {
-            this.pq.dequeue()
-            this.pq.enqueue(val)
-        }
-    } else {
-        this.pq.enqueue(val)
+    this.pq.enqueue(val)
+    if (this.pq.size() > this.k) {
+        this.pq.dequeue()
     }
     return this.pq.front().element
 };
