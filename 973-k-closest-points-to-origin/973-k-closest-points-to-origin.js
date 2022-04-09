@@ -31,6 +31,6 @@ var euclideanDistanceToOrigen = function(point) {
     return Math.sqrt(x**2 + y**2)
 }
 
-// Heap
+// MaxPriorityQueue
 // time complexity: O(n*log(k))
 // space complexity: O(k)
