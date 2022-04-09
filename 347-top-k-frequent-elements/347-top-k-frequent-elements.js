@@ -3,32 +3,20 @@
  * @param {number} k
  * @return {number[]}
  */
-
-class Pair {
-    constructor(priority, value) {
-        this.priority = priority
-        this.element = value
-    }
-}
 var topKFrequent = function(nums, k) {
-    const maxPQ = new MaxPriorityQueue({priority: (a,b) => b[0] - a[0]})
-    const frequency = {}
-    const response = []
+    let minPQ = new MinPriorityQueue()
+    let frequency = {}
     
-    for (let number of nums) {
-        if (!(number in frequency)) frequency[number] = 0
-        frequency[number]++
+    for (number of nums) {
+        if (number in frequency) frequency[number]++
+        else frequency[number] = 1
     }
     
-    for (let [element, priority] of Object.entries(frequency)) {
-        maxPQ.enqueue(element, priority)
+    for (let [key, value] of Object.entries(frequency)) {
+        minPQ.enqueue(key, value)
+        if (minPQ.size() > k) minPQ.dequeue()
     }
     
-    while (k > 0) {
-        response.push(maxPQ.dequeue().element)
-        k--
-    }
-    
-    return response
+    return minPQ.toArray().map(el => el.element)
     
 };
