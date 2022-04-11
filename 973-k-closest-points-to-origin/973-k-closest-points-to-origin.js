@@ -4,33 +4,29 @@
  * @return {number[][]}
  */
 var kClosest = function(points, k) {
-    const maxPQ = new MaxPriorityQueue()
-    const response = []
-    
+    let maxPQ = new MaxPriorityQueue()
+    let pq = []
     for (let point of points) {
-        const ditanceToOrigin = euclideanDistanceToOrigen(point)
-        if (maxPQ.size() < k) {
-            maxPQ.enqueue(point, ditanceToOrigin)
+        let pointDistanceToOrigin = distanceToOrigin(point)
+        if (pq.length < k) {
+            pq.push({
+                point,
+                pointDistanceToOrigin
+            })
+            pq.sort((a, b) => a.pointDistanceToOrigin - b.pointDistanceToOrigin)
         } else {
-            if (ditanceToOrigin < maxPQ.front().priority) {
-                maxPQ.dequeue()
-                maxPQ.enqueue(point, ditanceToOrigin)
+            if (pointDistanceToOrigin < pq[k - 1].pointDistanceToOrigin) {
+                pq.pop()
+                pq.push({
+                    point,
+                    pointDistanceToOrigin
+                })
+                pq.sort((a, b) => a.pointDistanceToOrigin - b.pointDistanceToOrigin)
             }
         }
     }
     
-    while (!maxPQ.isEmpty()) {
-        response.push(maxPQ.dequeue().element)
-    }
-    
-    return response
+    return pq.map(({ point }) => point)
 };
 
-var euclideanDistanceToOrigen = function(point) {
-    const [x, y] = point
-    return Math.sqrt(x**2 + y**2)
-}
-
-// MaxPriorityQueue
-// time complexity: O(n*log(k))
-// space complexity: O(k)
+const distanceToOrigin = ([x,y]) => x ** 2 + y ** 2
