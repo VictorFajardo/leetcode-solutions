@@ -5,28 +5,17 @@
  */
 var kClosest = function(points, k) {
     let maxPQ = new MaxPriorityQueue()
-    let pq = []
     for (let point of points) {
-        let pointDistanceToOrigin = distanceToOrigin(point)
-        if (pq.length < k) {
-            pq.push({
-                point,
-                pointDistanceToOrigin
-            })
-            pq.sort((a, b) => a.pointDistanceToOrigin - b.pointDistanceToOrigin)
-        } else {
-            if (pointDistanceToOrigin < pq[k - 1].pointDistanceToOrigin) {
-                pq.pop()
-                pq.push({
-                    point,
-                    pointDistanceToOrigin
-                })
-                pq.sort((a, b) => a.pointDistanceToOrigin - b.pointDistanceToOrigin)
-            }
+        let dist = squaredDistance(point)
+        if (maxPQ.size() < k) {
+            maxPQ.enqueue(point, dist)
+        } else if (dist < maxPQ.front().priority) {
+            maxPQ.dequeue()
+            maxPQ.enqueue(point, dist)
         }
     }
     
-    return pq.map(({ point }) => point)
+    return maxPQ.toArray().map(el => el.element)
 };
 
-const distanceToOrigin = ([x,y]) => x ** 2 + y ** 2
+const squaredDistance = ([x,y]) => x ** 2 + y ** 2
