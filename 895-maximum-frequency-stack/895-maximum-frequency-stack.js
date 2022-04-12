@@ -1,8 +1,12 @@
 
 var FreqStack = function() {
-    this.stack = []
-    this.temp = []
-    this.frequency = {}
+    this.stack = new MaxPriorityQueue({compare: (e1, e2) => {
+        if (e1.priority !== e2.priority) return e2.priority - e1.priority
+        return e2.order - e1.order
+    }})
+    this.store = {}
+    this.order = 0
+    
 };
 
 /** 
@@ -10,47 +14,20 @@ var FreqStack = function() {
  * @return {void}
  */
 FreqStack.prototype.push = function(val) {
-    this.stack.push(val)
-    if (val in this.frequency) this.frequency[val]++
-    else this.frequency[val] = 1    
+    if (val in this.store) this.store[val]++
+    else this.store[val] = 1
+    this.stack.enqueue({element: val, order: this.order, priority: this.store[val]})
+    this.order++
 };
 
 /**
  * @return {number}
  */
 FreqStack.prototype.pop = function() {
-    let maxFrequency = -1
-    let maxFrequencyNumber = -1
+    let { priority, element } = this.stack.dequeue()
+    this.store[element]--
     
-    // time: O(n)
-    for (let i = this.stack.length - 1; i >= 0; i--) {
-        let number = this.stack[i]
-        let frequency = this.frequency[number]
-        if (frequency > maxFrequency) {
-            maxFrequency = frequency
-            maxFrequencyNumber = number
-        }
-    }
-    
-    if (maxFrequency > 1) this.frequency[maxFrequencyNumber]--
-    else delete this.frequency[maxFrequencyNumber]
-    
-    // looking for the maxFrequencyNumber
-    while (this.stack.length) {
-        let current = this.stack.pop()
-        if (current === maxFrequencyNumber) break
-        else this.temp.push(current)
-    }
-    
-    
-    // restoring this.stack
-    while (this.temp.length) {
-        let current = this.temp.pop()
-        this.stack.push(current)
-    }
-    
-    return maxFrequencyNumber
-    
+    return element
 };
 
 /** 
