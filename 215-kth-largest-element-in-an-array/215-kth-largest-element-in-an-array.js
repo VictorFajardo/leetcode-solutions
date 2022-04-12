@@ -6,7 +6,8 @@
 var findKthLargest = function(nums, k) {
     const minPQ = new MinPriorityQueue()
     
-    // time: O(n)
+    // time: O(n*log(k))
+    // space: O(k)
     nums.map((num) => {
         if (minPQ.size() < k) {
             minPQ.enqueue(num)
