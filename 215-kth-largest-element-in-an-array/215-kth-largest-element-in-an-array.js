@@ -9,13 +9,9 @@ var findKthLargest = function(nums, k) {
     // time: O(n*log(k))
     // space: O(k)
     nums.map((num) => {
-        if (minPQ.size() < k) {
-            minPQ.enqueue(num)
-        } else {
-            if (num > minPQ.front().element) {
-                minPQ.dequeue()
-                minPQ.enqueue(num)
-            }
+        minPQ.enqueue(num)
+        if (minPQ.size() > k) {
+            minPQ.dequeue()
         }
     })
     
