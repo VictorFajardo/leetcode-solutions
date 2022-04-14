@@ -22,3 +22,7 @@ var kthSmallest = function(matrix, k) {
     }
     
 };
+
+// PriorityQueue
+// time complexity: O(k*log(k))
+// space complexity: O(k)
