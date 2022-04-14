@@ -15,7 +15,7 @@ var kthSmallest = function(matrix, k) {
         let { rowIdx, colIdx, value } = minPQ.dequeue()
         if (k === 1) return value
         const row = matrix[rowIdx]
-        if (colIdx < row.length - 1) {
+        if (colIdx < n - 1) {
             minPQ.enqueue({ rowIdx: rowIdx, colIdx: colIdx + 1, value: row[colIdx + 1] })
         }
         k--
