@@ -30,3 +30,7 @@ var canFinish = function(numCourses, prerequisites) {
     
     return counter === numCourses
 };
+
+// Topological Sort
+// time complexity: O(n + m)
+// space complexity: O(n + m)
