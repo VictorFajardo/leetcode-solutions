@@ -8,29 +8,38 @@ var sortArray = function(nums) {
 };
 
 // QuickSort
-var quickSort = function(arr, start = 0, end = arr.length - 1) {
-    if (start < end) {
-        let pivot = getPivot(arr, start, end)
-        quickSort(arr, start, pivot - 1)
-        quickSort(arr, pivot + 1, end)
+function pivot(arr, start = 0, end = arr.length - 1) {
+  const swap = (arr, idx1, idx2) => {
+    [arr[idx1], arr[idx2]] = [arr[idx2], arr[idx1]];
+  };
+
+  // We are assuming the pivot is always the first element
+  let pivot = arr[start];
+  let swapIdx = start;
+
+  for (let i = start + 1; i <= end; i++) {
+    if (pivot > arr[i]) {
+      swapIdx++;
+      swap(arr, swapIdx, i);
     }
-    return arr
+  }
+
+  // Swap the pivot from the start the swapPoint
+  swap(arr, start, swapIdx);
+  return swapIdx;
 }
 
-var getPivot = function(arr, start, end) {
-    let pivot = arr[start]
-    let swapIndex = start
-    
-    for (let i = start + 1; i <= end; i++) {
-        if (pivot > arr[i]) {
-            swapIndex++
-            [arr[swapIndex], arr[i]] = [arr[i], arr[swapIndex]]
-        }
-    }
-    
-    [arr[swapIndex], arr[start]] = [arr[start], arr[swapIndex]]
-    return swapIndex
-}
+
+function quickSort(arr, left = 0, right = arr.length -1){
+    if(left < right){
+        let pivotIndex = pivot(arr, left, right) //3
+        //left
+        quickSort(arr,left,pivotIndex-1);
+        //right
+        quickSort(arr,pivotIndex+1,right);
+      }
+     return arr;
+} 
 
 //Merge Sort
 var mergeSort = function(array) {
