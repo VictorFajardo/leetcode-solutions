@@ -33,3 +33,7 @@ var inOrder = function(root, list) {
     list.push(root.val)
     inOrder(root.right, list)
 }
+
+// Depth First Search
+// time complexity: O(n)
+// space complexity: O(n)
