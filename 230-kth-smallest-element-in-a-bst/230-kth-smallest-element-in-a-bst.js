@@ -20,9 +20,7 @@ var kthSmallest = function(root, k) {
         
         helper(root.left)
         k--
-        if (k === 0) {
-            response = root.val
-        }
+        if (k === 0) response = root.val
         helper(root.right)
     }
     
