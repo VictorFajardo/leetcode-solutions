@@ -16,7 +16,7 @@ var kthSmallest = function(root, k) {
     let response
     
     var helper = function(root) {
-        if (!root) return
+        if (!root || k < 1) return
         
         helper(root.left)
         k--
