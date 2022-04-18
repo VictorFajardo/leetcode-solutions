@@ -13,19 +13,16 @@
  */
 var kthSmallest = function(root, k) {
     if (!root) return root
-    let response
+    const res = []
     
-    var helper = function(root) {
-        if (!root || k < 1) return
-        
-        helper(root.left)
-        k--
-        if (k === 0) response = root.val
-        helper(root.right)
+    const BST = (root) => {
+        if (root.left) BST(root.left)
+        res.push(root.val)
+        if (root.right) BST(root.right)
     }
     
-    helper(root)
+    BST(root)
     
-    return response
+    return res[k - 1]
+    
 };
-
