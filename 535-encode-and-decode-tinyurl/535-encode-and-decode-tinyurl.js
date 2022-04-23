@@ -1,5 +1,4 @@
 const alphabet = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
-const database = {}
 const long = new Map()
 const short = new Map()
 const baseUrl = 'http://tinyurl.com/'
@@ -14,22 +13,22 @@ var generateKey = function() {
 }
 
 var encode = function(longUrl) {
-    // let shortUrl = Date.now()
-    // while(key in database) {
-        // key = generateKey()
-    // }
-    // database[key] = longUrl
-    let shortUrl = baseUrl + Date.now()
-    long.set(longUrl, shortUrl)
-    short.set(shortUrl, longUrl)
-    return shortUrl
+    if (long.has(longUrl)) {
+        return long.get(longUrl)
+    }
+    let key = Date.now()
+    long.set(longUrl, key)
+    short.set(key, longUrl)
+    return baseUrl + key
 }
 
 var decode = function(shortUrl) {
-    // console.log(database)
-    // let key = shortUrl.replace(baseUrl, '')
-    // return database[key]
-    return short.get(shortUrl)
+    let key = Number(shortUrl.replace(baseUrl, ''))
+    if (short.has(key)) {
+        console.log('here')
+        return short.get(key)    
+    }
+    return
 }
 
 
