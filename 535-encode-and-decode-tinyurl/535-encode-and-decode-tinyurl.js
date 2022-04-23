@@ -18,7 +18,6 @@ const encode = function(longUrl) {
     if (long.has(longUrl)) {
         return long.get(longUrl)
     }
-    let key = generateNewKey()
     while (long.has(key)) {
         key = generateNewKey()
     }
