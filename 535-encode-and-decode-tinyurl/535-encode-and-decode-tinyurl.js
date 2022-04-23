@@ -12,10 +12,10 @@ var generateKey = function() {
 }
 
 var encode = function(longUrl) {
-    let key = generateKey()
-    while(key in database) {
-        key = generateKey()
-    }
+    let key = Date.now()
+    // while(key in database) {
+        // key = generateKey()
+    // }
     database[key] = longUrl
     return baseUrl + key
 }
