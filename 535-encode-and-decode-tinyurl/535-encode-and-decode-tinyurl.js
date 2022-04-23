@@ -3,7 +3,7 @@ const long = new Map()
 const short = new Map()
 const baseUrl = 'http://tinyurl.com/'
 
-var generateNewKey = function() {
+const generateNewKey = function() {
     let newKey = ''
     for (let i = 0; i < 6; i++) {
         let randomNumber = Math.floor(Math.random() * 62)
@@ -12,7 +12,7 @@ var generateNewKey = function() {
     return newKey
 }
 
-var encode = function(longUrl) {
+const encode = function(longUrl) {
     if (long.has(longUrl)) {
         return long.get(longUrl)
     }
@@ -25,7 +25,7 @@ var encode = function(longUrl) {
     return baseUrl + key
 }
 
-var decode = function(shortUrl) {
+const decode = function(shortUrl) {
     let key = shortUrl.replace(baseUrl, '')
     if (short.has(key)) {
         return short.get(key)    
