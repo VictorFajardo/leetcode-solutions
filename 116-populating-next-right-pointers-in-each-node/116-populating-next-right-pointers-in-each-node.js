@@ -23,3 +23,7 @@ var connect = function(root) {
     
     return root
 };
+
+// Depth First Search
+// time complexity: O(n)
+// space complexity: O(n)
