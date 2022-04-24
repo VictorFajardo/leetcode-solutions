@@ -32,7 +32,41 @@ var helper = function(root, level, response) {
     
 }
 
-/*
-response = [[3], [9. 20], [15, 7]]
+// Depth First Search
+// time complexity: O(n)
+// space complexity: O(n)
 
+/*
+var levelOrder = function(root) {
+    if (!root) return []
+    
+    const levelOrderResponse = []
+    const queue = new Queue()
+    
+    queue.enqueue(root)
+    
+    while (!queue.isEmpty()) {
+        let qLength = queue.size()
+        const levelNodes = []
+        while (qLength > 0) {
+            let current = queue.dequeue()
+            levelNodes.push(current.val)
+            if (current.left) {
+                queue.enqueue(current.left)
+            }
+            if (current.right) {
+                queue.enqueue(current.right)
+            }
+            qLength--
+        }
+        levelOrderResponse.push(levelNodes)
+    }
+    
+    return levelOrderResponse
+    
+};
 */
+
+// Breadth First Search
+// time complexity: O(n)
+// space complexity: O(n)
