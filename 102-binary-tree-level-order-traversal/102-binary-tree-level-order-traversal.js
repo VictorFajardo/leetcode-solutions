@@ -14,31 +14,25 @@ var levelOrder = function(root) {
     if (!root) return []
     
     const levelOrderResponse = []
-    const queue = new Queue()
     
-    queue.enqueue(root)
-    
-    while (!queue.isEmpty()) {
-        let qLength = queue.size()
-        const levelNodes = []
-        while (qLength > 0) {
-            let current = queue.dequeue()
-            levelNodes.push(current.val)
-            if (current.left) {
-                queue.enqueue(current.left)
-            }
-            if (current.right) {
-                queue.enqueue(current.right)
-            }
-            qLength--
-        }
-        levelOrderResponse.push(levelNodes)
-    }
+    helper(root, 0, levelOrderResponse)
     
     return levelOrderResponse
     
 };
 
-// Breadth First Search
-// time complexity: O(n)
-// space complexity: O(n)
+var helper = function(root, level, response) {
+    if (!root) return
+    
+    if (response[level] === undefined) response[level] = []
+    response[level].push(root.val)
+    
+    helper(root.left, level + 1, response)
+    helper(root.right, level + 1, response)
+    
+}
+
+/*
+response = [[3], [9. 20], [15, 7]]
+
+*/
