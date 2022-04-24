@@ -24,7 +24,7 @@ var levelOrder = function(root) {
 var helper = function(root, level, response) {
     if (!root) return
     
-    if (response[level] === undefined) response[level] = []
+    if (level === response.length) response[level] = []
     response[level].push(root.val)
     
     helper(root.left, level + 1, response)
