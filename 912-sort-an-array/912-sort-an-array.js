@@ -3,33 +3,43 @@
  * @return {number[]}
  */
 var sortArray = function(nums) {
-    return mergeSort(nums)
-    // return quickSort(nums)
+    // return mergeSort(nums)
+    return quickSort(nums)
 };
 
 // QuickSort
 var quickSort = function(arr, start = 0, end = arr.length - 1) {
     if (start < end) {
-        let pivot = getPivot(arr, start, end)
+        let random = getRandom(start, end)
+        let pivot = getPivot(arr, random, start, end)
         quickSort(arr, start, pivot - 1)
         quickSort(arr, pivot + 1, end)
     }
     return arr
 }
 
-var getPivot = function(arr, start, end) {
-    let pivot = arr[start]
-    let swapIndex = start
+var getPivot = function(arr, random, start, end) {
+    let pivot = end
+    let swapIndex = end
     
-    for (let i = start + 1; i <= end; i++) {
-        if (pivot > arr[i]) {
-            swapIndex++
-            [arr[swapIndex], arr[i]] = [arr[i], arr[swapIndex]]
+    for (let i = end - 1; i >= 0; i--) {
+        if (arr[pivot] < arr[i]) {
+            swapIndex--
+            swap(arr, swapIndex, i)
         }
     }
     
-    [arr[swapIndex], arr[start]] = [arr[start], arr[swapIndex]]
+    swap(arr, swapIndex, end)
     return swapIndex
+}
+
+var getRandom = function(start, end) {
+    return start + Math.floor((end - start) / 2)
+}
+
+
+var swap = function(arr, index1, index2) {
+    [arr[index1], arr[index2]] = [arr[index2], arr[index1]]
 }
 
 //Merge Sort
