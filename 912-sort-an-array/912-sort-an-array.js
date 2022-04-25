@@ -43,6 +43,9 @@ var swap = function(arr, index1, index2) {
     [arr[index1], arr[index2]] = [arr[index2], arr[index1]]
 }
 
+// time complexity: O(n*log(n))
+// space complexity: O(log(n))
+
 //Merge Sort
 var mergeSort = function(array) {
     if (array.length === 1) return array
@@ -80,3 +83,6 @@ var merge = function(left, right) {
     
     return merged
 }
+
+// time complexity: O(n*log(n))
+// space complexity: O(n)
