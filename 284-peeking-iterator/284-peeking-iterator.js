@@ -18,36 +18,40 @@
  * @param {Iterator} iterator
  */
 var PeekingIterator = function(iterator) {
-    this.database = []
-    this.pointer = 0
+    this.iterator = iterator
+    this.peekedValue = null
+    // this.pointer = 0
     
-    while (iterator.hasNext()) {
-        this.database.push(iterator.next())
-    }
+    // while (iterator.hasNext()) {
+    //     this.database.push(iterator.next())
+    // }
 };
 
 /**
  * @return {number}
  */
 PeekingIterator.prototype.peek = function() {
-    if (this.hasNext) return this.database[this.pointer]
-    return false
+    if (!this.peekedValue) this.peekedValue = this.iterator.next() 
+    return this.peekedValue
 };
 
 /**
  * @return {number}
  */
 PeekingIterator.prototype.next = function() {
-    let nextValue = this.database[this.pointer]
-    this.pointer += 1
-    return nextValue
+    if (this.peekedValue) {
+        let toReturn = this.peekedValue
+        this.peekedValue = null
+        return toReturn
+    }
+    return this.iterator.next() 
 };
 
 /**
  * @return {boolean}
  */
 PeekingIterator.prototype.hasNext = function() {
-    return this.pointer < this.database.length
+    return this.peekedValue || this.iterator.hasNext()
 };
 
 /** 
