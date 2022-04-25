@@ -10,7 +10,7 @@ var findKthLargest = function(nums, k) {
 };
 
 var quickSelect = function(arr, target, start = 0, end = arr.length - 1) {
-    let random = start + Math.floor((end - start) / 2)
+    let random = getRandom(start, end)
     let pivot = getPivot(arr, random, start, end)
     if (pivot === target) return arr[pivot]
     else if (pivot > target) return quickSelect(arr, target, start, pivot - 1)
@@ -18,21 +18,24 @@ var quickSelect = function(arr, target, start = 0, end = arr.length - 1) {
 }
 
 var getPivot = function(arr, random, start, end) {
-    [arr[random], arr[start]] = [arr[start], arr[random]]
-    let pivot = start
-    let swapIndex = start
+    [arr[random], arr[end]] = [arr[end], arr[random]]
+    let pivot = end
+    let swapIndex = end
     
-    for (let i = start + 1; i <= end; i++) {
-        if (arr[pivot] > arr[i]) {
-            swapIndex++
+    for (let i = end - 1; i >= 0; i--) {
+        if (arr[pivot] < arr[i]) {
+            swapIndex--
             [arr[swapIndex], arr[i]] = [arr[i], arr[swapIndex]]
         }
     }
     
-    [arr[swapIndex], arr[start]] = [arr[start], arr[swapIndex]]
+    [arr[swapIndex], arr[end]] = [arr[end], arr[swapIndex]]
     return swapIndex
 }
 
+var getRandom = function(start, end) {
+    return start + Math.floor((end - start) / 2)
+}
 // Quick Select
 // time complexity: O(n)
 // space complexity: O(n)
