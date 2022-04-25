@@ -19,6 +19,7 @@ var quickSort = function(arr, start = 0, end = arr.length - 1) {
 }
 
 var getPivot = function(arr, random, start, end) {
+    swap(arr, random, end)
     let pivot = end
     let swapIndex = end
     
