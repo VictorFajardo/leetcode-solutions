@@ -10,18 +10,20 @@ var findKthLargest = function(nums, k) {
 };
 
 var quickSelect = function(arr, target, start = 0, end = arr.length - 1) {
-    let pivot = getPivot(arr, start, end)
+    let random = start + Math.floor((end - start) / 2)
+    let pivot = getPivot(arr, random, start, end)
     if (pivot === target) return arr[pivot]
     else if (pivot > target) return quickSelect(arr, target, start, pivot - 1)
     else return quickSelect(arr, target, pivot + 1, end)
 }
 
-var getPivot = function(arr, start, end) {
-    let pivot = arr[start]
+var getPivot = function(arr, random, start, end) {
+    [arr[random], arr[start]] = [arr[start], arr[random]]
+    let pivot = start
     let swapIndex = start
     
     for (let i = start + 1; i <= end; i++) {
-        if (pivot > arr[i]) {
+        if (arr[pivot] > arr[i]) {
             swapIndex++
             [arr[swapIndex], arr[i]] = [arr[i], arr[swapIndex]]
         }
