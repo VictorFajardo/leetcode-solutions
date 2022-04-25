@@ -18,24 +18,30 @@ var quickSelect = function(arr, target, start = 0, end = arr.length - 1) {
 }
 
 var getPivot = function(arr, random, start, end) {
-    [arr[random], arr[end]] = [arr[end], arr[random]]
+    swap(arr, random, end)
     let pivot = end
     let swapIndex = end
     
     for (let i = end - 1; i >= 0; i--) {
         if (arr[pivot] < arr[i]) {
             swapIndex--
-            [arr[swapIndex], arr[i]] = [arr[i], arr[swapIndex]]
+            swap(arr, swapIndex, i)
         }
     }
     
-    [arr[swapIndex], arr[end]] = [arr[end], arr[swapIndex]]
+    swap(arr, swapIndex, end)
     return swapIndex
 }
 
 var getRandom = function(start, end) {
     return start + Math.floor((end - start) / 2)
 }
+
+
+var swap = function(arr, index1, index2) {
+    [arr[index1], arr[index2]] = [arr[index2], arr[index1]]
+}
+
 // Quick Select
 // time complexity: O(n)
 // space complexity: O(n)
