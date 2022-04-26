@@ -34,3 +34,7 @@ var findMedianSortedArrays = function(nums1, nums2) {
     return (n % 2 === 0) ? (merged[mid - 1] + merged[mid]) / 2 : merged[mid]
     
 };
+
+// Divide and Conquer
+// time complexity: O(n + m)
+// space complexity: O(n + m)
