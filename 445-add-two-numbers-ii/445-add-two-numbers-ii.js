@@ -28,7 +28,7 @@ var addTwoNumbers = function(l1, l2) {
     let next = null
     let rest = 0
     
-    while (n1.length || n2.length) {
+    while (n1.length || n2.length || rest) {
         let val1 = n1.length ? n1.pop() : 0
         let val2 = n2.length ? n2.pop() : 0
         let sum = val1 + val2 + rest
@@ -39,10 +39,10 @@ var addTwoNumbers = function(l1, l2) {
         next = head
     }
     
-    if (rest) {
-        head = new ListNode(rest)
-        head.next = next
-    }
+    // if (rest) {
+    //     head = new ListNode(rest)
+    //     head.next = next
+    // }
     
     return head
 };
