@@ -39,10 +39,9 @@ var addTwoNumbers = function(l1, l2) {
         next = head
     }
     
-    // if (rest) {
-    //     head = new ListNode(rest)
-    //     head.next = next
-    // }
-    
     return head
 };
+
+// Linked List
+// time complexity: O(n)
+// space complexity: O(1)
