@@ -17,3 +17,7 @@ var searchMatrix = function(matrix, target) {
     
     return false
 };
+
+// Divide and Conquer
+// time complexity: O(n + m)
+// space complexity: O(1)
