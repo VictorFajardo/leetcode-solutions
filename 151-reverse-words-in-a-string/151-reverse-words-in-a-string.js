@@ -24,3 +24,7 @@ var reverseWords = function(s) {
     return response
 
 };
+
+// Array
+// time complexity: O(n)
+// space complexity: O(1)
