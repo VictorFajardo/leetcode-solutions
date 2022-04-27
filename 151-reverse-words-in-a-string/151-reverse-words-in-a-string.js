@@ -4,9 +4,15 @@
  */
 var reverseWords = function(s) {
     let response = ''
+    let i = 0
     
-    for (let i = 0; i < s.length; i++) {
-        if (s[i] === ' ') continue
+    while (i < s.length) {
+        // space
+        while (s[i] === ' ') {
+            i++
+        }
+        if (i === s.length) break
+        // letter
         let word = ''
         while (s[i] !== ' ' && i < s.length) {
             word += s[i]
