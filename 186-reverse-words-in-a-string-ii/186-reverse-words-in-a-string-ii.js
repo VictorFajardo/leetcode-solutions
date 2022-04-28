@@ -8,13 +8,14 @@ var reverseWords = function(s) {
     let end = 0
     
     //go through the array reversing word by word
-    while (end <= n) {
-        if (end === n || s[end] === " ") {
-            reverseSubArray(s, start, end - 1)
-            start = end + 1
-            end = start
+    while (start < n) {
+        while (end < n && s[end] !== " ") {
+            end += 1    
         }
-        end++
+        
+        reverseSubArray(s, start, end - 1)
+        end += 1
+        start = end
     }
     
     //reverse the whole array
