@@ -24,13 +24,14 @@ var myAtoi = function(s) {
     while (i < n && s[i] >= '0' && s[i] <= '9') {
         let digit = s[i] - '0'
         result = result * 10 + digit
+        if (sign === 1) {
+            if (result > MAX) return MAX
+        } else {
+            if (-result < MIN) return MIN
+        }
         i++
-    }
+    }    
     
-    result = sign * result
-    
-    if (result < MIN) return MIN
-    else if (result > MAX) return MAX
-    return result
+    return sign * result
     
 };
