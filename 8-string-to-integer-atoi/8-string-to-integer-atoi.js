@@ -8,27 +8,29 @@ var myAtoi = function(s) {
     const MAX = Math.pow(2, 31) - 1
     let sign = 1
     let i = 0
+    let result = 0
     
-    while (s[i] === ' ' && i < n) {
+    while (i < n && s[i] === ' ') {
         i++
     }
     
-    if (s[i] === '-' || s[i] === '+') {
+    if (i < n && s[i] === '-' || s[i] === '+') {
         sign = s[i] === '+' ? 1 : -1
         i++
     }
     
     let number = ''
     
-    while (s.charCodeAt(i) >= 48 && s.charCodeAt(i) <= 57 && i < n) {
-        number += s[i]
+    while (i < n && s[i] >= '0' && s[i] <= '9') {
+        let digit = s[i] - '0'
+        result = result * 10 + digit
         i++
     }
-    console.log(number)
-    let response = sign * Number(number)
     
-    if (response < MIN) return MIN
-    else if (response > MAX) return MAX
-    return response
+    result = sign * result
+    
+    if (result < MIN) return MIN
+    else if (result > MAX) return MAX
+    return result
     
 };
