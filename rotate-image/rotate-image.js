@@ -26,3 +26,7 @@ var rotate = function(matrix) {
     reverse(matrix)
     
 };
+
+// Array
+// time complexity: O(m)
+// space complexity: O(1)
