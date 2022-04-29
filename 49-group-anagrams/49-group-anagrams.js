@@ -6,7 +6,6 @@ var groupAnagrams = function(strs) {
     const anagramsMap = {}
     const response = []
     
-    
     strs.forEach((word) => {
         const charMap = new Array(26).fill(0)
         for (let char of word) {
