@@ -38,4 +38,4 @@ var myAtoi = function(s) {
 
 // String
 // time complexity: O(n)
-// space complexity: O(n)
+// space complexity: O(1)
