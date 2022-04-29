@@ -35,3 +35,7 @@ var myAtoi = function(s) {
     return sign * result
     
 };
+
+// String
+// time complexity: O(n)
+// space complexity: O(n)
