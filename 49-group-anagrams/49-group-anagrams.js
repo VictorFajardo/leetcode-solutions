@@ -3,24 +3,27 @@
  * @return {string[][]}
  */
 var groupAnagrams = function(strs) {
-    const dictionary = {}
-    const res = []
+    const anagramsMap = {}
+    const response = []
     
-    for (let i = 0; i < strs.length; i++) {
-        let key = strs[i].split('').sort().join('')
-        if (dictionary[key] === undefined) {
-            dictionary[key] = []  
+    strs.forEach((word) => {
+        const charMap = new Array(26).fill(0)
+        for (let char of word) {
+            let index = char.charCodeAt(0) - 97
+            charMap[index]++
         }
-        dictionary[key].push(i)
+        const key = charMap.join(':')
+        if (!(key in anagramsMap)) anagramsMap[key] = []
+        anagramsMap[key].push(word)
+    })
+    
+    for (let words of Object.values(anagramsMap)) {
+        response.push(words)
     }
     
-    for (let val of Object.values(dictionary)) {
-        res.push([])
-        for (let idx of val) {
-            res[res.length - 1].push(strs[idx])
-        }
-    }
-    
-    return res
-    
+    return response
 };
+
+// Array
+// time complexity: O(nk)
+// space complexity: O(nk)
