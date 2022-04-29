@@ -6,7 +6,7 @@ var rotate = function(matrix) {
     const n = matrix.length
     
     const transpose = (matrix) => {
-        for (let row = 0; row < n + 1; row++) {
+        for (let row = 0; row < n - 1; row++) {
             for (let col = row + 1; col < n; col++) {
                 [matrix[row][col], matrix[col][row]] = [matrix[col][row], matrix[row][col]]
             }
