@@ -10,27 +10,34 @@
  * @return {ListNode}
  */
 var mergeKLists = function(lists) {
-    const minPQ = new MinPriorityQueue()
-    let sorted = new ListNode()
-    let current = sorted
-   
-    lists.map((list, index) => {
-        if (list) minPQ.enqueue(list.next, list.val)
-    })
+    const minPQ = new MinPriorityQueue({ compare: (a, b) => a.val - b.val })
+    let head = null
+    let current = null
     
-    while (!minPQ.isEmpty()) {
-        let { priority, element } = minPQ.dequeue()
-        current.next = new ListNode(priority)
-        current = current.next
-        
-        if (element) {
-            minPQ.enqueue(element.next, element.val)
+    for (let list of lists) {
+        if (list) {
+            minPQ.enqueue(list)
         }
     }
+
+    while (!minPQ.isEmpty()) {
+        let min = minPQ.dequeue()
+        let node = new ListNode(min.val)
+        if (!head) {
+            head = node
+            current = node
+        } else {
+            current.next = node
+            current = current.next
+        }
+        min = min.next
+        if (min) minPQ.enqueue(min)
+    }
     
-    return sorted.next
+    return head
+    
 };
 
 // Priority Queue
-// time complexity: O(N*log(k))
+// time complexity: O(n*log(k))
 // space complexity: O(n)
