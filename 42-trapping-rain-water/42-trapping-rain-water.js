@@ -5,21 +5,18 @@
 var trap = function(height) {
     let left = 0
     let right = height.length - 1
-    let maxLeft = height[left]
-    let maxRight = height[right]
-    let currHeight = 0
+    let maxLeft = 0
+    let maxRight = 0
     let trappingWater = 0
     
     while (left < right) {
-        maxLeft = Math.max(maxLeft, height[left])
-        maxRight = Math.max(maxRight, height[right])
-        if (maxLeft < maxRight) {
-            currHeight = height[left]
-            trappingWater += maxLeft - currHeight
+        if (height[left] < height[right]) {
+            maxLeft = Math.max(maxLeft, height[left])
+            trappingWater += maxLeft - height[left]
             left++
         } else {
-            currHeight = height[right]
-            trappingWater += maxRight - currHeight
+            maxRight = Math.max(maxRight, height[right])
+            trappingWater += maxRight - height[right]
             right--
         }
     }
