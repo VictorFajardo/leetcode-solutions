@@ -3,13 +3,12 @@
  * @return {number}
  */
 var titleToNumber = function(columnTitle) {
-    const length = columnTitle.length
-    let columnNumber = 0
-    
-    for (let i = 0; i < length; i++) {
-        let code = columnTitle.charCodeAt(i) - 64
-        columnNumber += code * Math.pow(26, length - i - 1) 
+    const BASE = 26
+    const cLength = columnTitle.length
+    let sum = 0
+    for (let i = 0; i < cLength; i++) {
+        let digit = columnTitle.charCodeAt(i) - 64
+        sum += digit * Math.pow(BASE, cLength - i - 1)
     }
-    
-    return columnNumber
+    return sum
 };
