@@ -4,7 +4,6 @@
  */
 var numberToWords = function(num) {
     const dictionary = {
-        0: 'Zero',
         1: 'One',
         2: 'Two',
         3: 'Three',
@@ -36,7 +35,7 @@ var numberToWords = function(num) {
     let counter = 1
     let words = ''
 
-    if (!num) return dictionary[0]
+    if (!num) return 'Zero'
     
     let billion = Math.floor(num / 1000000000)
     let million = Math.floor((num - billion * 1000000000) / 1000000)
