@@ -12,19 +12,24 @@
  * @return {TreeNode}
  */
 var buildTree = function(preorder, inorder) {
-    // console.log(inorder)
-    if (!inorder.length) return null
+    let preorderIndex = 0
+
+    var arrayToTree = function(preorder, inorder) {
+        if (!inorder.length) return null
     
-    let val = preorder[0]
-    let root = new TreeNode(val)
+        let val = preorder[preorderIndex]
+        let root = new TreeNode(val)
+
+        preorderIndex++
+        let index = inorder.indexOf(val)
+        // console.log(preorder)
+
+        root.left = arrayToTree(preorder, inorder.slice(0, index))
+        root.right = arrayToTree(preorder, inorder.slice(index + 1))
+
+        return root
+    }
     
-    preorder.shift()
-    let index = inorder.indexOf(val)
-    // console.log(preorder)
     
-    root.left = buildTree(preorder, inorder.slice(0, index))
-    root.right = buildTree(preorder, inorder.slice(index + 1))
-    
-    return root
-    
+    return arrayToTree(preorder, inorder)
 };
