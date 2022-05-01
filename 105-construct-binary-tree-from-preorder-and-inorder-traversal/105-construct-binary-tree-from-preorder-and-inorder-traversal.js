@@ -33,3 +33,7 @@ var buildTree = function(preorder, inorder) {
     
     return arrayToTree(preorder, 0, n - 1)
 };
+
+// Recursion
+// time complexity: O(n)
+// space complexity: O(n)
