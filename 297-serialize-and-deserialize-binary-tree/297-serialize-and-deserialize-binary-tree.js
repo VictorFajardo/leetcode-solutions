@@ -40,16 +40,22 @@ var serialize = function(root) {
  * @return {TreeNode}
  */
 var deserialize = function(data) {
-    if (!data.length) return null
-    let val = data[0]
-    data.shift()
-    if (val === null) return null
+    let index = 0
     
-    let root = new TreeNode(val)
-    root.left = deserialize(data)
-    root.right = deserialize(data)
+    var dePreOrder = function(data) {
+        if (index === data.length) return
+        let val = data[index]
+        index += 1
+        if (val === null) return null
+
+        let root = new TreeNode(val)
+        root.left = dePreOrder(data)
+        root.right = dePreOrder(data)
+
+        return root
+    }
     
-    return root
+    return dePreOrder(data)
 };
 
 /**
