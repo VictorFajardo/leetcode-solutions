@@ -15,17 +15,15 @@
 var serialize = function(root) {
     const response = []
     
-    var preOrder = function(root) {
-        if (!root) {
+    var preOrder = function(node) {
+        if (!node) {
             response.push(null)
             return
         }
 
-        response.push(root.val)
-        preOrder(root.left, response)
-        preOrder(root.right, response)
-        
-        return response
+        response.push(node.val)
+        preOrder(node.left, response)
+        preOrder(node.right, response)
     }
     
     preOrder(root)
