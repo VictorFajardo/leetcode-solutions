@@ -12,14 +12,23 @@
  * @param {TreeNode} root
  * @return {string}
  */
-var serialize = function(root, response = []) {
-    if (!root) return response
+var serialize = function(root) {
+    const response = []
     
-    response.push(root.val)
-    if (root.left) serialize(root.left, response)
-    else response.push(null)
-    if (root.right) serialize(root.right, response)
-    else response.push(null)
+    var preOrder = function(root) {
+        if (!root) {
+            response.push(null)
+            return
+        }
+
+        response.push(root.val)
+        preOrder(root.left, response)
+        preOrder(root.right, response)
+        
+        return response
+    }
+    
+    preOrder(root)
     
     return response
 };
