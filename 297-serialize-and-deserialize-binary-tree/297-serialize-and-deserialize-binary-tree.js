@@ -44,6 +44,7 @@ var deserialize = function(data) {
     
     var dePreOrder = function(data) {
         if (index === data.length) return
+        
         let val = data[index]
         index += 1
         if (val === null) return null
