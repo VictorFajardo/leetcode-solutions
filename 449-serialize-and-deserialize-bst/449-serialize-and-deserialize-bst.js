@@ -44,3 +44,7 @@ var deserialize = function(data, min = -Infinity, max = Infinity) {
  * Your functions will be called as such:
  * deserialize(serialize(root));
  */
+
+// Deepth First Search - Post Order traversal
+// time complexity: O(n)
+// space complexity: O(n)
