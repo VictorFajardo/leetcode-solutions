@@ -13,14 +13,13 @@
  * @return {string}
  */
 var serialize = function(root, response = []) {
-    if (!root) {
-        response.push(null)
-        return []
-    }
+    if (!root) return response
     
     response.push(root.val)
-    serialize(root.left, response)
-    serialize(root.right, response)
+    if (root.left) serialize(root.left, response)
+    else response.push(null)
+    if (root.right) serialize(root.right, response)
+    else response.push(null)
     
     return response
 };
