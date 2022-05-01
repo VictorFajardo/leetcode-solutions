@@ -36,8 +36,6 @@ var deserialize = function(data) {
     data.shift()
     if (val === null) return null
     
-    
-    
     let root = new TreeNode(val)
     root.left = deserialize(data)
     root.right = deserialize(data)
