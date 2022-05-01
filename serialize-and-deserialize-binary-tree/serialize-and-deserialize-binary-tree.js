@@ -62,6 +62,6 @@ var deserialize = function(data) {
  * deserialize(serialize(root));
  */
 
-// Deepth First Search - Post Order traversal
+// Deepth First Search - Pre Order traversal
 // time complexity: O(n)
 // space complexity: O(n)
