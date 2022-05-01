@@ -40,7 +40,7 @@ var serialize = function(root) {
 var deserialize = function(data) {
     let index = 0
     
-    var dePreOrder = function(data) {
+    var dePreOrder = function() {
         if (index === data.length) return
         
         let val = data[index]
@@ -54,7 +54,7 @@ var deserialize = function(data) {
         return root
     }
     
-    return dePreOrder(data)
+    return dePreOrder()
 };
 
 /**
