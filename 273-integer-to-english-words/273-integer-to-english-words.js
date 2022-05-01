@@ -82,3 +82,7 @@ var toString = function(num, dictionary) {
     
     return str
 }
+
+// Divide & Conquer
+// time complexity: O(n)
+// space complexity: O(1)
