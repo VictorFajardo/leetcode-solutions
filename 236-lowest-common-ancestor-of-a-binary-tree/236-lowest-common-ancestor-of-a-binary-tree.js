@@ -32,3 +32,6 @@ var lowestCommonAncestor = function(root, p, q) {
     return ans
 };
 
+// Depth First Search
+// time complexity: O(n)
+// space complexity: O(1)
