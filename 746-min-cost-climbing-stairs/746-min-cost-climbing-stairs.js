@@ -18,3 +18,7 @@ var minCostClimbingStairs = function(cost) {
     return dp(n, cache)
     
 };
+
+// Dynamic Programming
+// time complexity: O(n)
+// space complexity: O(n)
