@@ -14,3 +14,7 @@ var sortArrayByParity = function(nums) {
     
     return nums
 };
+
+// Two Pointers
+// time complexity: O(n)
+// space complexity: O(1)
