@@ -18,3 +18,7 @@ var lengthOfLIS = function(nums) {
     
     return totalMax
 };
+
+// Dynamic Programming
+// time complexity: O(n)
+// space complexity: O(1)
