@@ -3,40 +3,41 @@
  * @return {number}
  */
 var findUnsortedSubarray = function(nums) {
-    const n = nums.length
-    let left = 0
-    let right = n - 1
-    let min = Infinity
-    let max = -Infinity
+    const n = nums.length - 1
+    let start = 0
+    let end = n
+    let subarrayMin = Infinity
+    let subarrayMax = -Infinity
     
-    for (; left < n - 1; left++) {
-        if (nums[left] > nums[left + 1]) break
+    while (start < n && nums[start] <= nums[start + 1]) {
+        start++
     }
     
-    if (left === n - 1) return 0
+    if (start === n) return 0
     
-    for (; right > 0; right--) {
-        if (nums[right] < nums[right - 1]) break
+    while (end > 0 && nums[end] >= nums[end - 1]) {
+        end--
     }
     
-    for (let i = left; i <= right; i ++) {
-        let value = nums[i]
-        min = Math.min(min, value)
-        max = Math.max(max, value)
+    for (let i = start; i <= end; i++) {
+        let currentNum = nums[i]
+        subarrayMin = Math.min(subarrayMin, currentNum)
+        subarrayMax = Math.max(subarrayMax, currentNum)
     }
     
-    for (let i = left - 1; i >= 0; i--) {
-        if (nums[i] > min) {
-            left = i
-        }
+    while (start > 0 && nums[start - 1] > subarrayMin) {
+        start--
     }
     
-    for (let i = right + 1; i < n; i++) {
-        if (nums[i] < max) {
-            right = i
-        }
+    while (end < n && nums[end + 1] < subarrayMax) {
+        end++
     }
     
-    return right - left + 1
+    return end - start + 1
     
 };
+
+
+// Two Pointers
+// time complexity: O(n)
+// space complexity: O(1)
