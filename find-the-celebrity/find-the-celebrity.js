@@ -9,36 +9,48 @@
  * };
  */
 
+var cache = function(fn) {
+    const cache = new Map()
+    return function(...args) {
+        const key = args.join(':')
+        if (!cache.has(key)) {
+            const value = fn(...args)
+            cache.set(key, value)
+        }
+        return cache.get(key)
+    }
+}
+
 /**
  * @param {function} knows()
  * @return {function}
  */
 var solution = function(knows) {
+    knows = cache(knows)
+    
+    function isCelebrity(i, n) {
+        for (let j = 0; j < n; j++) {
+            if (i === j) continue
+            if (knows(i, j) || !knows(j, i)) return false
+        }
+        return true
+    }
     
     /**
      * @param {integer} n Total people
      * @return {integer} The celebrity
      */
     return function(n) {
-        const popularity = new Array(n).fill(0)
-        const candidates = []
-    
+        let celebrityCandidate = 0
+        
         for (let i = 0; i < n; i++) {
-            let people = 0
-            for (let j = 0; j < n; j++) {
-                if (i === j) continue
-                if (knows(i, j)) {
-                    popularity[j] += 1
-                    people += 1
-                }
+            if (knows(celebrityCandidate, i)) {
+                celebrityCandidate = i
             }
-            if (people === 0) candidates.push(i)
         }
         
-        for (let i = 0; i < candidates.length; i++) {
-            const candidate = candidates[i]
-            if (popularity[candidate] === n - 1) return candidate
-        }
+        if (isCelebrity(celebrityCandidate, n)) return celebrityCandidate
         return -1
+        
     };
 };
