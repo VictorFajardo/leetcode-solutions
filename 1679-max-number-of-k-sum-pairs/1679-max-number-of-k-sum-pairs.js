@@ -16,8 +16,7 @@ var maxOperations = function(nums, k) {
             }
             pairs += 1
         } else {
-            if (!(number in store)) store[number] = 0
-            store[number] += 1
+            store[number] = store[number] + 1 || 1
         }
     })
     
