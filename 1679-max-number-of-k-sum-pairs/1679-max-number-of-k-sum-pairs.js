@@ -9,11 +9,8 @@ var maxOperations = function(nums, k) {
     
     nums.forEach((number) => {
         let complement = k - number
-        if (complement in store) {
+        if (complement in store && store[complement] > 0) {
             store[complement] -= 1
-            if (store[complement] === 0) {
-                delete store[complement]
-            }
             pairs += 1
         } else {
             store[number] = store[number] + 1 || 1
