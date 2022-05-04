@@ -4,16 +4,16 @@
  * @return {number}
  */
 var maxOperations = function(nums, k) {
-    const store = {}
+    const store = new Map()
     let pairs = 0
     
     nums.forEach((number) => {
         let complement = k - number
-        if (complement in store && store[complement] > 0) {
-            store[complement] -= 1
+        if (store.has(complement) && store.get(complement) > 0) {
+            store.set(complement, store.get(complement) - 1)
             pairs += 1
         } else {
-            store[number] = store[number] + 1 || 1
+            store.set(number, store.get(number) + 1 || 1)
         }
     })
     
