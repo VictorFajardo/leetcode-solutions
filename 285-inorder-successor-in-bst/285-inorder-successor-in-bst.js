@@ -20,6 +20,4 @@ var inorderSuccessor = function(root, p) {
         return left ? left : root
     }
     
-
-    
 };
