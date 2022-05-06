@@ -23,6 +23,6 @@ var inorderSuccessor = function(root, p) {
     
 };
 
-// Depth First Search
+// Depth First Search - Iterative
 // time complexity: O(n)
 // space complexity: O(n)
