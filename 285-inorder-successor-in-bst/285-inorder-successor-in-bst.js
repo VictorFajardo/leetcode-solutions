@@ -13,6 +13,30 @@
 var inorderSuccessor = function(root, p) {
     if (!root) return null
     
+    let successor = null
+    
+    while (root) {
+        if (root.val <= p.val) {
+            root = root.right
+        } else {
+            successor = root
+            root = root.left
+        }
+    }
+    
+    return successor
+    
+};
+
+// Depth First Search - Iterative
+// time complexity: O(n)
+// space complexity: O(n)
+
+
+/*
+
+    if (!root) return null
+    
     if (root.val <= p.val) {
         return inorderSuccessor(root.right, p)
     } else {
@@ -21,8 +45,8 @@ var inorderSuccessor = function(root, p) {
         else return root
     }
     
-};
-
-// Depth First Search - Iterative
-// time complexity: O(n)
-// space complexity: O(n)
+    // Depth First Search - Recursive
+    // time complexity: O(n)
+    // space complexity: O(n)
+    
+*/
