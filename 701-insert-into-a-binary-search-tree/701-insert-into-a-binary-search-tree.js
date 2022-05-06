@@ -20,8 +20,12 @@ var insertIntoBST = function(root, val) {
     return root
 };
 
+// Depth-First Search - Iteration
+// time complexity: O(h)
+// space complexity: O(1)
+
 // Depth-First Search - Recursive
-// time complexity: O(n)
+// time complexity: O(h)
 // space complexity: O(1)
 
 /*
