@@ -12,6 +12,19 @@
  * @return {TreeNode}
  */
 var insertIntoBST = function(root, val) {
+    if (!root) return new TreeNode(val)
+    
+    if (root.val > val) root.left = insertIntoBST(root.left, val)
+    else root.right = insertIntoBST(root.right, val)
+    
+    return root
+};
+
+// Depth-First Search - Recursive
+// time complexity: O(n)
+// space complexity: O(1)
+
+/*
     let current = root
     let node = new TreeNode(val)
     
@@ -33,8 +46,4 @@ var insertIntoBST = function(root, val) {
     }
     
     return node
-};
-
-// Depth-First Search - Recursive
-// time complexity: O(n)
-// space complexity: O(1)
+*/
