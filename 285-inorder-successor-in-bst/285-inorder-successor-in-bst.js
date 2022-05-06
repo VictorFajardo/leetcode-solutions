@@ -17,7 +17,8 @@ var inorderSuccessor = function(root, p) {
         return inorderSuccessor(root.right, p)
     } else {
         const left = inorderSuccessor(root.left, p)    
-        return left ? left : root
+        if (left) return left
+        else return root
     }
     
 };
