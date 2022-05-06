@@ -10,14 +10,15 @@
  * @param {TreeNode} root
  */
 var BSTIterator = function(root) {
-    this.inOrderQueue = new Queue()
+    this.inOrderList = []
     this.inOrder(root)
+    this.index = 0
 };
 
 BSTIterator.prototype.inOrder = function(root) {
     if (!root) return
     this.inOrder(root.left)
-    this.inOrderQueue.enqueue(root.val)
+    this.inOrderList.push(root.val)
     this.inOrder(root.right)
 };
 
@@ -25,14 +26,16 @@ BSTIterator.prototype.inOrder = function(root) {
  * @return {number}
  */
 BSTIterator.prototype.next = function() {
-    return this.inOrderQueue.dequeue()
+    let response = this.inOrderList[this.index]
+    this.index += 1
+    return response
 };
 
 /**
  * @return {boolean}
  */
 BSTIterator.prototype.hasNext = function() {
-    return !this.inOrderQueue.isEmpty()
+    return this.index < this.inOrderList.length
 };
 
 /** 
