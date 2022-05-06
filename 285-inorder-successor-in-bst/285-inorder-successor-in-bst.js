@@ -11,7 +11,7 @@
  * @return {TreeNode}
  */
 var inorderSuccessor = function(root, p) {
-    if (!root) return
+    if (!root) return null
     
     if (root.val <= p.val) {
         return inorderSuccessor(root.right, p)
