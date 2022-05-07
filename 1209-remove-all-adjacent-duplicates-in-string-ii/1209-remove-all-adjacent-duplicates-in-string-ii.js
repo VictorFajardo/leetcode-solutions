@@ -6,39 +6,30 @@
 var removeDuplicates = function(s, k) {
     const stack = []
     let response = ''
+    let i = 0
     
-    for (let i = 0; i < s.length; i++) {
+    while (i < s.length) {
         let char = s.charAt(i)
-        stack.push(char)
-        let sLength = stack.length
-        if (sLength >= k) {
-            if (verifyKLastElements(stack, char, k)) removeKLastElements(stack, k)
-        }        
+        
+        if (stack.length && stack[stack.length - 1][0] === char) {
+            let top = stack[stack.length - 1]
+            if (top[1] === k - 1) {
+                stack.pop()
+            } else {
+                top[1] += 1
+            }
+        } else {
+            stack.push([char, 1])
+        }
+        i += 1
     }
-    
-    stack.forEach((char) => {
-        response += char
+    stack.forEach(([char, rep]) => {
+        while (rep > 0) {
+            response += char
+            rep -= 1
+        }
     })
     
     return response
     
 };
-
-var verifyKLastElements = function(arr, char, k) {
-    let lastIndex = arr.length - 1
-    while (k > 0) {
-        if (arr[lastIndex] !== char) return false
-        lastIndex -= 1
-        k -= 1
-    }
-    return true
-}
-
-var removeKLastElements = function(arr, k) {
-    let lastIndex = arr.length - 1
-    while (k > 0) {
-        arr.pop()
-        lastIndex -= 1
-        k -= 1
-    }
-}
