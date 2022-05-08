@@ -13,8 +13,7 @@
 var isBalanced = function(root) {
     if (!root) return true
     
-    if (Math.abs(height(root.left) - height(root.right)) > 1) return false
-    else return isBalanced(root.left) && isBalanced(root.right)
+    return Math.abs(height(root.left) - height(root.right)) < 2 && isBalanced(root.left) && isBalanced(root.right)
 };
 
 var height = function(root) {
