@@ -1,15 +1,44 @@
+class TreeNode {
+    constructor(val) {
+        this.val = val
+        this.count = 1
+        this.left = null
+        this.right = null
+    }
+}
 /**
  * @param {number} k
  * @param {number[]} nums
  */
 var KthLargest = function(k, nums) {
+    this.root = null
     this.k = k
-    this.pq = new MinPriorityQueue()
+    
+    this.insertNode = function(root, val) {
+        if (!root) return new TreeNode(val)
+
+        if (root.val < val) root.right = this.insertNode(root.right, val)
+        else root.left = this.insertNode(root.left, val)
+        
+        root.count += 1
+        
+        return root
+    }
+    
+    this.searchNode = function(root, k) {
+        const m = root.right ? root.right.count : 0
+        
+        if (k === m + 1) return root.val
+        
+        if (k <= m) return this.searchNode(root.right, k)
+        else {
+            return this.searchNode(root.left, k - m - 1)
+        }
+    }
     
     nums.forEach((val) => {
-        this.add(val)
+        this.root = this.insertNode(this.root, val)
     })
-    
 };
 
 /** 
@@ -17,15 +46,8 @@ var KthLargest = function(k, nums) {
  * @return {number}
  */
 KthLargest.prototype.add = function(val) {
-    if (this.pq.size() < this.k) this.pq.enqueue(val)
-    else {
-        if (val > this.pq.front().element) {
-            this.pq.enqueue(val)
-            this.pq.dequeue()
-        }
-    }
-    
-    return this.pq.front().element
+    this.root = this.insertNode(this.root, val)
+    return this.searchNode(this.root, this.k)
 };
 
 /** 
