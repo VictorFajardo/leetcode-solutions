@@ -50,7 +50,7 @@ Trie.prototype.insert = function(word) {
  */
 Trie.prototype.search = function(word) {
     let node = this.startsWith(word)
-    return node !== null && node !== false && node.isEnd()
+    return node && node.isEnd()
     
 };
 
