@@ -23,24 +23,26 @@ var validPath = function(n, edges, source, destination) {
     
     edges.forEach(edge => addEdge(...edge))
     
+    let seen = false
+    
     const dfs = function(source, destination, visited = new Set()) {
-        if (source === destination) return true
-
-        const vertices = adjacencyList.get(source)
-        visited.add(source)
-        
-        for (let vertex of vertices) {
-            if (vertex === destination) {
-                return true
+        if (!visited.has(source) && !seen) {
+            if (source === destination) {
+                seen = true
+                return
             }
-            
-            if (!visited.has(vertex)) {
-                if(dfs(vertex, destination, visited)) return true
+
+            visited.add(source)
+
+            const vertices = adjacencyList.get(source)
+
+            for (let vertex of vertices) {
+                dfs(vertex, destination, visited)
             }
         }
-        
-        return false
     }
     
-    return dfs(source, destination)
+    dfs(source, destination)
+    
+    return seen
 };
