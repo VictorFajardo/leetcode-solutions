@@ -1,15 +1,19 @@
 class TrieNode {
     constructor() {
-        this.links = {}
+        this.links = new Map()
         this.isWord = false
     }
     
-    get(char) {
-        return this.links[char]
+    set(char) {
+        this.links.set(char, new TrieNode())
     }
     
-    set(char) {
-        this.links[char] = new TrieNode()
+    has(char) {
+        return this.links.get(char) !== undefined
+    }
+    
+    get(char) {
+        return this.links.get(char)
     }
     
     setEnd() {
@@ -21,36 +25,55 @@ class TrieNode {
     }
 }
 
-class Trie {
-    constructor() {
-        this.root = new TrieNode()
-    }
+var Trie = function() {
+    this.root = new TrieNode()
+};
 
-    insert(word, node = this.root) {
-        for (let char of word) {
-            if (!node.get(char)) {
-                node.set(char)
-            }
-            node = node.get(char)
+/** 
+ * @param {string} word
+ * @return {void}
+ */
+Trie.prototype.insert = function(word) {
+    root = this.root
+    for (let char of word) {
+        if (!root.has(char)) {
+            root.set(char)
         }
-        node.isWord = true
+        root = root.get(char)
     }
+    root.setEnd()
+};
 
-    search(word) {
-        let node = this.startsWith(word)
-        return node && node.isEnd()
+/** 
+ * @param {string} word
+ * @return {boolean}
+ */
+Trie.prototype.search = function(word) {
+    let node = this.startsWith(word)
+    return node && node.isEnd()
+    
+};
 
-    }
-
-    startsWith(prefix) {
-        let node = this.root
-        for (let i = 0; i < prefix.length; i++) {
-            let char = prefix.charAt(i)
-            if (!node.get(char)) {
-                return false
-            }
-            node = node.get(char)
+/** 
+ * @param {string} prefix
+ * @return {boolean}
+ */
+Trie.prototype.startsWith = function(prefix) {
+    root = this.root
+    for (let char of prefix) {
+        if (!root.has(char)) {
+            return false
         }
-        return node
+        root = root.get(char)
     }
-}
+    return root
+    
+};
+
+/** 
+ * Your Trie object will be instantiated and called as such:
+ * var obj = new Trie()
+ * obj.insert(word)
+ * var param_2 = obj.search(word)
+ * var param_3 = obj.startsWith(prefix)
+ */
