@@ -21,4 +21,6 @@ var deepestLeavesSum = function(root, level = 0, sum = []) {
     
 };
 
-// Deep
+// Depth First Search
+// time complexity: O(n)
+// space complexity: O(h)
