@@ -10,24 +10,15 @@
  * @param {TreeNode} root
  * @return {number}
  */
-var deepestLeavesSum = function(root) {
+var deepestLeavesSum = function(root, level = 0, sum = []) {
     if (!root) return root
     
-    var deepest = function(root) {
-        if (!root) return 0
-        
-        return Math.max(deepest(root.left), deepest(root.right)) + 1
-    }
+    sum[level] = (sum[level] || 0) + root.val
+    deepestLeavesSum(root.left, level + 1, sum)
+    deepestLeavesSum(root.right, level + 1, sum)
     
-    var deepestLeaves = function(root, target, deep = 1) {
-        if (!root) return 0
-        
-        if (deep === target) return root.val
-        
-        return deepestLeaves(root.left, target, deep + 1) + deepestLeaves(root.right, target, deep + 1)
-    }
-    
-    let deepestTarget = deepest(root)
-    return deepestLeaves(root, deepestTarget)
+    return sum[sum.length - 1]
     
 };
+
+// Deep
