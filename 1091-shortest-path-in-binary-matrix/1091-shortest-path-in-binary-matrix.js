@@ -10,19 +10,18 @@ var shortestPathBinaryMatrix = function(grid) {
     const queue = new Queue()
     queue.enqueue([0,0])
     grid[0][0] = 1
-    let steps = 0
     
     while (!queue.isEmpty()) {
         let qLength = queue.size()
-        steps += 1
         
         while (qLength > 0) {
             let [r, c] = queue.dequeue()
-            if (r === n - 1 && c === n - 1) return steps
+            let value = grid[r][c]
+            if (r === n - 1 && c === n - 1) return value
             for (let [row, col] of directions) {
                 if (r + row >= 0 && r + row < n && c + col >= 0 && c + col < n && grid[r + row][c + col] === 0) {
                     queue.enqueue([r + row, c + col])
-                    grid[r + row][c + col] = 1
+                    grid[r + row][c + col] = value + 1
                 }
             }
             qLength -= 1
@@ -32,3 +31,7 @@ var shortestPathBinaryMatrix = function(grid) {
     return -1
     
 };
+
+// Breath First Search
+// time complexity: O(n)
+// space complexity: O(n)
