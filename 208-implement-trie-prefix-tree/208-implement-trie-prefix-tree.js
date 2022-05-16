@@ -26,7 +26,7 @@ class TrieNode {
 }
 
 var Trie = function() {
-    this.root = new TrieNode()
+    this.root = {}
 };
 
 /** 
@@ -34,14 +34,12 @@ var Trie = function() {
  * @return {void}
  */
 Trie.prototype.insert = function(word) {
-    root = this.root
+    node = this.root
     for (let char of word) {
-        if (!root.has(char)) {
-            root.set(char)
-        }
-        root = root.get(char)
+        if (node[char] === undefined) node[char] = {}
+        node = node[char]
     }
-    root.setEnd()
+    node.isEnd = true
 };
 
 /** 
@@ -50,7 +48,7 @@ Trie.prototype.insert = function(word) {
  */
 Trie.prototype.search = function(word) {
     let node = this.startsWith(word)
-    return node && node.isEnd()
+    return node && node.isEnd === true
     
 };
 
@@ -59,14 +57,12 @@ Trie.prototype.search = function(word) {
  * @return {boolean}
  */
 Trie.prototype.startsWith = function(prefix) {
-    root = this.root
+    node = this.root
     for (let char of prefix) {
-        if (!root.has(char)) {
-            return false
-        }
-        root = root.get(char)
+        if (node[char] === undefined) return false
+        node = node[char]
     }
-    return root
+    return node
     
 };
 
