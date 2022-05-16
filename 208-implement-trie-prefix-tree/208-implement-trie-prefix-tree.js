@@ -1,32 +1,6 @@
-class TrieNode {
-    constructor() {
-        this.children = new Map()
-        this.isWord = false
-    }
-    
-    set(char) {
-        this.children.set(char, new TrieNode())
-    }
-    
-    has(char) {
-        return this.children.get(char) !== undefined
-    }
-    
-    get(char) {
-        return this.children.get(char)
-    }
-    
-    setEnd() {
-        this.isWord = true
-    }
-    
-    isEnd() {
-        return this.isWord
-    }
-}
 
 var Trie = function() {
-    this.root = new TrieNode()
+    this.root = {};    
 };
 
 /** 
@@ -34,14 +8,13 @@ var Trie = function() {
  * @return {void}
  */
 Trie.prototype.insert = function(word) {
-    root = this.root
-    for (let char of word) {
-        if (!root.has(char)) {
-            root.set(char)
-        }
-        root = root.get(char)
+    let node = this.root;
+    
+    for (var letter of word) {
+        if (node[letter] === undefined) node[letter] = {}
+        node = node[letter];
     }
-    root.setEnd()
+    node.isEnd = true;
 };
 
 /** 
@@ -49,9 +22,17 @@ Trie.prototype.insert = function(word) {
  * @return {boolean}
  */
 Trie.prototype.search = function(word) {
-    let node = this.startsWith(word)
-    return node && node.isEnd()
+    let node = this.root;
     
+    for (var letter of word) {
+        if (node[letter]) {
+            node = node[letter]
+        } else {
+            return false 
+        }
+    }
+    
+    return node && node.isEnd === true
 };
 
 /** 
@@ -59,15 +40,16 @@ Trie.prototype.search = function(word) {
  * @return {boolean}
  */
 Trie.prototype.startsWith = function(prefix) {
-    root = this.root
-    for (let char of prefix) {
-        if (!root.has(char)) {
-            return false
-        }
-        root = root.get(char)
-    }
-    return root
+    let node = this.root; 
     
+    for (var letter of prefix) {
+        if (node[letter]) {
+            node = node[letter]
+        } else {
+            return false 
+        }
+    }
+    return true
 };
 
 /** 
