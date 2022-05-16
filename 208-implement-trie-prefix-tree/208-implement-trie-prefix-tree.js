@@ -1,19 +1,19 @@
 class TrieNode {
     constructor() {
-        this.links = new Map()
+        this.children = new Map()
         this.isWord = false
     }
     
     set(char) {
-        this.links.set(char, new TrieNode())
+        this.children.set(char, new TrieNode())
     }
     
     has(char) {
-        return this.links.get(char) !== undefined
+        return this.children.get(char) !== undefined
     }
     
     get(char) {
-        return this.links.get(char)
+        return this.children.get(char)
     }
     
     setEnd() {
