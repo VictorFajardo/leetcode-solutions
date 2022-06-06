@@ -32,7 +32,6 @@ var minKnightMoves = function(x, y) {
         steps += 1
     }
     
-    // console.log(visited)
     return -1
     
 };
