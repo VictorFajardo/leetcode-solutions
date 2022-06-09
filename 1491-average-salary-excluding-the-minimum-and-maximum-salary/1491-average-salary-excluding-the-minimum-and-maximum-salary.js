@@ -3,20 +3,14 @@
  * @return {number}
  */
 var average = function(salary) {
-    let minSalary = Infinity
-    let maxSalary = -Infinity
+    const n = salary.length
+    salary.sort((a, b) => a - b)
     let sum = 0
-    
-    for (let employee of salary) {
-        minSalary = Math.min(minSalary, employee)
-        maxSalary = Math.max(maxSalary, employee)
-        sum += employee
+
+    for (let i = 1; i < n - 1; i++) {
+        sum += salary[i]
     }
     
-    return (sum - minSalary - maxSalary) / (salary.length - 2)
+    return sum / (n - 2)
     
 };
-
-// Array
-// time complexity: O(n)
-// space complexity: O(1)
