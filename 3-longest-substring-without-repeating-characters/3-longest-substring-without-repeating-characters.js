@@ -3,32 +3,24 @@
  * @return {number}
  */
 var lengthOfLongestSubstring = function(s) {
-    let startWindow = 0
-    const visited = {}
-    let longestSubstr = 0
+    let windowStart = 0
+    let maxLength = 0
+    const charIndexMap = {}
     
-    
-    for (let endWindow = 0; endWindow < s.length; endWindow++) {
-        let char = s[endWindow]
-        if (char in visited) {
-            startWindow = Math.max(startWindow, visited[char] + 1)
+    for (let windowEnd = 0; windowEnd < s.length; windowEnd++) {
+        let rightChar = s[windowEnd]
+        if(charIndexMap[rightChar] !== undefined) {
+            windowStart = Math.max(windowStart, charIndexMap[rightChar] + 1)
         }
         
-        visited[char] = endWindow
-        longestSubstr = Math.max(longestSubstr, endWindow - startWindow + 1)
+        charIndexMap[rightChar] = windowEnd
+        
+        maxLength = Math.max(maxLength, windowEnd - windowStart + 1)
     }
     
-    return longestSubstr
-    
+    return maxLength
 };
 
-/*
-{
-    a: 3,
-    b: 1,
-    c: 2,
-
-}
-
-
-*/
+// Sliding Window
+// time complexity: O(n)
+// space complexity: O(k)
