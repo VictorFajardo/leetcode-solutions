@@ -20,10 +20,7 @@ var wordPattern = function(pattern, s) {
             map.set(word, letter)
         } else if (map.get(word) !== letter) return false
     }
-    
-    console.log(map)
-    
+        
     return true
-    
     
 };
