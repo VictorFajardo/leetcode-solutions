@@ -15,16 +15,16 @@
 function kthSmallest(root: TreeNode | null, k: number): number {
     const response: number[] = [];
     
-    breathFirstSearch(root, k, response);
+    inorder(root, response);
     
     return response[k - 1];
 
 };
 
-function breathFirstSearch(root: TreeNode | null, k: number, response: number[]): void {
-    if (!root || response.length >= k) return;
+function inorder(root: TreeNode | null,response: number[]): void {
+    if (!root) return;
     
-    breathFirstSearch(root.left, k, response);
+    inorder(root.left, response);
     response.push(root.val);
-    breathFirstSearch(root.right, k, response);
+    inorder(root.right, response);
 };
