@@ -12,19 +12,22 @@
  * }
  */
 
-function sortedArrayToBST(nums: number[], start: number = 0, end: number = nums.length - 1): TreeNode | null {
+function sortedArrayToBST(nums: number[]): TreeNode | null {
+    return helper(nums, 0, nums.length - 1);
+};
+
+function helper(nums: number[], start: number, end: number): TreeNode | null {
     if (start <= end) {
         const mid: number = start + Math.floor((end - start) / 2);
 
         const root: TreeNode = new TreeNode(
             nums[mid],
-            sortedArrayToBST(nums, start, mid - 1),
-            sortedArrayToBST(nums, mid + 1, end)
+            helper(nums, start, mid - 1),
+            helper(nums, mid + 1, end)
         );
 
         return root    
     } 
     
     return null
-
-};
+}
