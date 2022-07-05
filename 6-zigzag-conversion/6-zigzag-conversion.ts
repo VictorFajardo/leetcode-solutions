@@ -3,11 +3,13 @@ function convert(s: string, numRows: number): string {
     let n: number = 0;
     const rows: string[] = new Array(numRows).fill('');
     let row: number = 0;
+    let goingUp: boolean = false;
     
     while (n < s.length) {
         const char: string = s.charAt(n);
         rows[row] += char;
-        row = (Math.floor(n / (numRows - 1)) % 2 === 0) ? row + 1 : row - 1;
+        if (row === 0 || row === numRows - 1) goingUp = !goingUp;
+        row += goingUp ? 1 : -1;
         n += 1;
     }
     
