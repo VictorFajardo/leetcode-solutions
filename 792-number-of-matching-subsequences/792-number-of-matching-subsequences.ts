@@ -2,7 +2,7 @@ function numMatchingSubseq(s: string, words: string[]): number {
     let count: number = 0;
     
     
-    main: for (let word of words) {
+    words.forEach((word) => {
         let prevIdx: number = -1;
         for (let i: number = 0; i < word.length; i++) {
             let char: string = word.charAt(i);
@@ -10,11 +10,11 @@ function numMatchingSubseq(s: string, words: string[]): number {
             if (idx > prevIdx) {
                 prevIdx = idx;
             } else {
-                continue main;
+                return;
             }
         }
         count++;
-    }
+    });
     
     return count;
 };
