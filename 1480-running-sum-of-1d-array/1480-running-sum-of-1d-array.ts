@@ -1,11 +1,12 @@
 function runningSum(nums: number[]): number[] {
-    let preSum: number = 0;
+    let sum: number = 0;
+    const response: number[] = [];
     
     for (let i = 0; i < nums.length; i++) {
-        nums[i] += preSum;
-        preSum = nums[i];
+        sum += nums[i];
+        response.push(sum);
     }
     
-    return nums;
+    return response;
 
 };
