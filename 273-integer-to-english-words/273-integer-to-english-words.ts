@@ -1,5 +1,30 @@
 function numberToWords(num: number): string {
     if (!num) return 'Zero'
+       
+    const threeDigitsGroups: number[] = [];
+    let response: string = '';
+    
+    while (num > 0) {
+        threeDigitsGroups.unshift(num % 1000);
+        num = Math.floor(num / 1000); 
+    }
+    
+    const unitGroups: string[] = ['', 'Thousand', 'Million', 'Billion'];
+    
+    for (let i = 0; i < threeDigitsGroups.length; i++) {
+        const threeDigits: number = threeDigitsGroups[i];
+        if (threeDigits) {
+            response += (response.length ? ' ' : '') + digitToString(threeDigits) + ' ' + unitGroups[threeDigitsGroups.length - i - 1];    
+        }
+    }
+    
+    return response.trim();
+
+};
+
+function digitToString(num: number): string {
+    const units: number[] = [];
+    let response: string = '';
     const dictionary: Map<number, string> = new Map([
         [1, 'One'],
         [2, 'Two'],
@@ -29,27 +54,6 @@ function numberToWords(num: number): string {
         [80, 'Eighty'],
         [90, 'Ninety']
     ]);
-        
-    const units: number[] = [];
-    let response: string = '';
-    
-    while (num > 0) {
-        units.push(num % 1000);
-        num = Math.floor(num / 1000); 
-    }
-    
-    if (units[3]) response += digitToString(units[3], dictionary) + ' Billion';
-    if (units[2]) response += (response.length ? ' ' : '') + digitToString(units[2], dictionary) + ' Million';
-    if (units[1]) response += (response.length ? ' ' : '') + digitToString(units[1], dictionary) + ' Thousand';
-    if (units[0]) response += (response.length ? ' ' : '') + digitToString(units[0], dictionary);
-    
-    return response;
-
-};
-
-function digitToString(num: number, dictionary: Map<number, string>): string {
-    const units: number[] = [];
-    let response: string = '';
     
     while (num > 0) {
         units.push(num % 10);
@@ -58,15 +62,17 @@ function digitToString(num: number, dictionary: Map<number, string>): string {
     
     if (units[2]) response += dictionary.get(units[2]) + ' Hundred';
     
-    if (units[1] === 1 && units[0] !== 0) {
-        response += (response.length ? ' ' : '') + dictionary.get(10 + units[0]);
-    } else {
-        if (units[1]) {
-            response += (response.length ? ' ' : '') + dictionary.get(units[1] * 10);
-        }
-        if (units[0]) {
-            response += (response.length ? ' ' : '') + dictionary.get(units[0]);
-        }
+    if (units[1] === 1) {
+        units[0] += 10;
+        units[1] = 0;
+    }
+    
+    if (units[1]) {
+        response += (response.length ? ' ' : '') + dictionary.get(units[1] * 10);
+    }
+    
+    if (units[0]) {
+        response += (response.length ? ' ' : '') + dictionary.get(units[0]);
     }
         
     return response;
