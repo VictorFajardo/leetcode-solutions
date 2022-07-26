@@ -14,7 +14,7 @@ function productExceptSelf(nums: number[]): number[] {
         rightProducts[i] = i < n - 1 ? rightProducts[i + 1] * nums[i + 1] : 1;
     }
     
-    console.log(leftProducts, rightProducts);
+    // console.log(leftProducts, rightProducts);
     
     for (let i = 0; i < n; i++) {
         response[i] = leftProducts[i] * rightProducts[i];
