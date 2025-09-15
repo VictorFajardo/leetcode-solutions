@@ -1,0 +1,18 @@
+{
+  "id": "020",
+  "title": "Valid Parentheses",
+  "slug": "valid-parentheses",
+  "difficulty": "easy",
+  "topics": [
+    "string",
+    "stack"
+  ],
+  "sources": [
+    "grind75",
+    "top-interview-150",
+    "grokking"
+  ],
+  "status": "solved",
+  "lastReviewed": "2025-09-15",
+  "reviewNotes": ""
+}

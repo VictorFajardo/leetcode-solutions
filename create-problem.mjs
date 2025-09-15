@@ -11,7 +11,7 @@ const LANGS = [
 
 async function getLeetCodeProblem(slug) {
   const query = `\
-    query getQuestionDetail($titleSlug: String!) {\n      question(titleSlug: $titleSlug) {\n        questionId\n        title\n        content\n        codeSnippets {\n          lang\n          langSlug\n          code\n        }\n      }\n    }\n  `;
+    query getQuestionDetail($titleSlug: String!) {\n      question(titleSlug: $titleSlug) {\n        questionId\n        title\n        content\n        difficulty\n        topicTags { name }\n        codeSnippets {\n          lang\n          langSlug\n          code\n        }\n      }\n    }\n  `;
   const response = await fetch('https://leetcode.com/graphql', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -41,6 +41,7 @@ async function main() {
     else throw new Error('Could not extract slug from URL.');
   }
 
+
   const problem = await getLeetCodeProblem(slug);
   if (!problem) throw new Error('Problem not found on LeetCode.');
 
@@ -48,9 +49,34 @@ async function main() {
   const folderPath = path.join(process.cwd(), folderName);
   await fs.mkdir(folderPath, { recursive: true });
 
+  // Prompt for sources (comma separated)
+  const { sources } = await inquirer.prompt([
+    {
+      type: 'input',
+      name: 'sources',
+      message: 'Sources (comma separated, e.g. grind75, top-interview-150, grokking):',
+      default: ''
+    }
+  ]);
+
   // Write README.md
   const readme = `# ${problem.title}\n\n${problem.content.replace(/<[^>]+>/g, '')}\n`;
   await fs.writeFile(path.join(folderPath, 'README.md'), readme);
+
+  // Write meta.json
+  const today = new Date().toISOString().slice(0, 10);
+  const meta = {
+    id: problem.questionId.padStart(3, '0'),
+    title: problem.title,
+    slug: slug,
+    difficulty: (problem.difficulty || '').toLowerCase() || 'unknown',
+    topics: (problem.topicTags || []).map(t => t.name.toLowerCase()),
+    sources: sources.split(',').map(s => s.trim()).filter(Boolean),
+    status: 'solved',
+    lastReviewed: today,
+    reviewNotes: ''
+  };
+  await fs.writeFile(path.join(folderPath, 'meta.json'), JSON.stringify(meta, null, 2));
 
   // Write solution files with default code and description
   for (const lang of LANGS) {

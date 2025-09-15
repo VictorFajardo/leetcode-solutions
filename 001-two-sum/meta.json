@@ -1,0 +1,11 @@
+{
+  "id": "001",
+  "title": "Two Sum",
+  "slug": "two-sum",
+  "difficulty": "easy",
+  "topics": ["array", "hash-table"],
+  "sources": ["top-interview-150", "grind75"],
+  "status": "solved",
+  "lastReviewed": "2025-09-15",
+  "reviewNotes": "Review edge cases and alternative approaches."
+}

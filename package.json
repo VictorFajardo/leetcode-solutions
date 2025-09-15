@@ -1,6 +1,16 @@
 {
+  "name": "leetcode-solutions",
+  "version": "1.0.0",
+  "description": "A collection of LeetCode solutions in Python, JavaScript, and TypeScript for SWE interview prep.",
+  "author": "Victor Fajardo",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/VictorFajardo/leetcode-solutions.git"
+  },
   "scripts": {
-    "fetch": "node create-problem.mjs"
+    "fetch": "node create-problem.mjs",
+    "update": "node generate-index.mjs"
   },
   "dependencies": {
     "inquirer": "^12.9.6",
