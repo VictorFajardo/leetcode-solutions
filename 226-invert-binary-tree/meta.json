@@ -1,0 +1,16 @@
+{
+  "id": "226",
+  "title": "Invert Binary Tree",
+  "slug": "invert-binary-tree",
+  "difficulty": "easy",
+  "topics": [
+    "tree",
+    "depth-first search",
+    "breadth-first search",
+    "binary tree"
+  ],
+  "sources": [],
+  "status": "solved",
+  "lastReviewed": "2025-09-21",
+  "reviewNotes": ""
+}

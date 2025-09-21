@@ -1,5 +1,5 @@
-import fs from 'fs/promises';
-import path from 'path';
+import fs from "fs/promises";
+import path from "path";
 
 async function main() {
   const cwd = process.cwd();
@@ -8,9 +8,9 @@ async function main() {
 
   for (const entry of entries) {
     if (entry.isDirectory() && /^\d{3}-.+/.test(entry.name)) {
-      const metaPath = path.join(cwd, entry.name, 'meta.json');
+      const metaPath = path.join(cwd, entry.name, "meta.json");
       try {
-        const meta = JSON.parse(await fs.readFile(metaPath, 'utf8'));
+        const meta = JSON.parse(await fs.readFile(metaPath, "utf8"));
         problems.push(meta);
       } catch (e) {
         // skip if meta.json missing or invalid
@@ -20,16 +20,22 @@ async function main() {
 
   // Markdown table header
   let md = `# Problem Index\n\n`;
-  md += '| ID | Title | Difficulty | Topics | Sources | Status | Last Reviewed |\n';
-  md += '|----|-------|------------|--------|---------|--------|---------------|\n';
+  md +=
+    "| ID | Title | Difficulty | Topics | Sources | Status | Last Reviewed |\n";
+  md +=
+    "|----|-------|------------|--------|---------|--------|---------------|\n";
   for (const p of problems) {
-    md += `| ${p.id} | [${p.title}](./${p.id}-${p.slug}/README.md) | ${p.difficulty} | ${(p.topics || []).join(', ')} | ${(p.sources || []).join(', ')} | ${p.status} | ${p.lastReviewed || ''} |\n`;
+    md += `| ${p.id} | [${p.title}](./${p.id}-${p.slug}/README.md) | ${
+      p.difficulty
+    } | ${(p.topics || []).join(", ")} | ${(p.sources || []).join(", ")} | ${
+      p.status
+    } | ${p.lastReviewed || ""} |\n`;
   }
-  await fs.writeFile(path.join(cwd, 'PROBLEMS.md'), md);
-  console.log('PROBLEMS.md generated.');
+  await fs.writeFile(path.join(cwd, "PROBLEMS.md"), md);
+  console.log("PROBLEMS.md generated.");
 }
 
-main().catch(e => {
+main().catch((e) => {
   console.error(e);
   process.exit(1);
 });
